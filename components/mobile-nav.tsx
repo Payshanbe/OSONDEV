@@ -1,12 +1,10 @@
 "use client";
 
 import { useEffect } from "react";
-import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 
 import { NavLink } from "@/components/nav-link";
-import { Button } from "@/components/ui/button";
 import { LocaleSwitcher } from "@/components/locale-switcher";
 import { useLocale, useSiteContent } from "@/components/site-content-provider";
 import { localizeHref } from "@/lib/i18n/paths";
@@ -117,16 +115,7 @@ export function MobileNav({ open, onClose, id }: MobileNavProps) {
             </nav>
 
             <div className="shrink-0 border-t border-border/40 p-4 sm:p-6">
-              <LocaleSwitcher className="mb-4 w-full justify-center" />
-              <Button
-                asChild
-                size="lg"
-                className="w-full shadow-[0_0_0_1px_hsl(var(--accent)/0.35),0_12px_40px_-12px_hsl(var(--accent)/0.35)] transition-shadow duration-300 hover:shadow-[0_0_0_1px_hsl(var(--accent)/0.5),0_16px_48px_-10px_hsl(var(--accent)/0.45)]"
-              >
-                <Link href={localizeHref(site.cta.href, locale)} onClick={onClose}>
-                  {site.cta.label}
-                </Link>
-              </Button>
+              <LocaleSwitcher className="w-full justify-center" />
             </div>
           </motion.div>
         </>

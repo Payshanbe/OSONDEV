@@ -30,7 +30,7 @@ export function SiteFooter() {
       <div className="container-wide py-16 sm:py-20">
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-5">
-            <Logo />
+            <Logo size="lg" />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-muted-foreground">
               {site.description}
             </p>
@@ -75,7 +75,7 @@ export function SiteFooter() {
 
         <div className="mt-14 flex flex-col gap-3 border-t border-border/40 pt-8 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <p className="font-mono uppercase tracking-[0.18em]">
-            © {year} {site.name} Studio
+            © {year} {site.name} Dev
           </p>
           <p className="font-mono uppercase tracking-[0.18em] text-muted-foreground/70">
             Built with care

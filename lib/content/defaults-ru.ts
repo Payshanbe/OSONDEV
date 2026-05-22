@@ -29,7 +29,7 @@ export const DEFAULT_SITE_CONTENT_RU: SiteContent = {
       dribbble: "https://dribbble.com/sitanstudio",
       linkedin: "https://linkedin.com/company/sitanstudio",
     },
-    authors: [{ name: "OSON Studio", url: "https://sitan.studio" }],
+    authors: [{ name: "OSON Dev", url: "https://sitan.studio" }],
     keywords: [
       "дизайн-студия",
       "веб-студия",
@@ -125,7 +125,7 @@ export const DEFAULT_SITE_CONTENT_RU: SiteContent = {
     },
     marquee: {
       items: [
-        { label: "Студия", value: "OSON / Remote" },
+        { label: "Dev", value: "OSON / Remote" },
         { label: "Фокус", value: "Бренд · Веб · Продукт" },
         { label: "Сроки", value: "От 4 недель" },
         { label: "Набор", value: "2026 — весенний intake" },

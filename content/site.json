@@ -2,7 +2,7 @@
   "site": {
     "name": "OSON",
     "shortName": "OSON",
-    "tagline": "Studio for design-led digital craft.",
+    "tagline": "Dev for design-led digital craft.",
     "description": "Sitan is an independent studio designing and engineering refined digital products for ambitious teams.",
     "url": "https://sitan.studio",
     "ogImage": "/og.png",
@@ -40,7 +40,7 @@
     },
     "authors": [
       {
-        "name": "Sitan Studio",
+        "name": "OSON Dev",
         "url": "https://sitan.studio"
       }
     ],
@@ -56,7 +56,7 @@
   },
   "sections": {
     "hero": {
-      "eyebrow": "Independent digital studio",
+      "eyebrow": "Independent digital dev",
       "title": "We build products people",
       "titleEmphasis": "remember.",
       "description": "We design and engineer premium digital experiences for ambitious brands, startups and modern businesses.",
@@ -137,8 +137,8 @@
     "marquee": {
       "items": [
         {
-          "label": "Studio",
-          "value": "Sitan / Remote"
+          "label": "Dev",
+          "value": "OSON / Remote"
         },
         {
           "label": "Focus",

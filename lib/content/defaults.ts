@@ -2,9 +2,9 @@ import type { SiteContent, WorkContent } from "@/lib/content/types";
 
 export const DEFAULT_SITE_CONTENT: SiteContent = {
   site: {
-    name: "Sitan",
-    shortName: "Sitan",
-    tagline: "Studio for design-led digital craft.",
+    name: "OSON",
+    shortName: "OSON",
+    tagline: "Dev for design-led digital craft.",
     description:
       "Sitan is an independent studio designing and engineering refined digital products for ambitious teams.",
     url: "https://sitan.studio",
@@ -29,7 +29,7 @@ export const DEFAULT_SITE_CONTENT: SiteContent = {
       dribbble: "https://dribbble.com/sitanstudio",
       linkedin: "https://linkedin.com/company/sitanstudio",
     },
-    authors: [{ name: "Sitan Studio", url: "https://sitan.studio" }],
+    authors: [{ name: "OSON Dev", url: "https://sitan.studio" }],
     keywords: [
       "design studio",
       "web studio",
@@ -42,7 +42,7 @@ export const DEFAULT_SITE_CONTENT: SiteContent = {
   },
   sections: {
     hero: {
-      eyebrow: "Independent digital studio",
+      eyebrow: "Independent digital dev",
       title: "We build products people",
       titleEmphasis: "remember.",
       description:
@@ -125,7 +125,7 @@ export const DEFAULT_SITE_CONTENT: SiteContent = {
     },
     marquee: {
       items: [
-        { label: "Studio", value: "Sitan / Remote" },
+        { label: "Dev", value: "OSON / Remote" },
         { label: "Focus", value: "Brand · Web · Product" },
         { label: "Engagements", value: "From 4 weeks" },
         { label: "Cycle", value: "2026 — Spring intake" },

@@ -1,15 +1,12 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { Menu } from "lucide-react";
 
 import { Logo } from "@/components/logo";
-import { Magnetic } from "@/components/magnetic";
 import { MobileNav } from "@/components/mobile-nav";
 import { NavLink } from "@/components/nav-link";
-import { Button } from "@/components/ui/button";
 import { useScroll } from "@/hooks/use-scroll";
 import { easeOutExpo } from "@/lib/motion";
 import { LocaleSwitcher } from "@/components/locale-switcher";
@@ -25,7 +22,7 @@ const DESKTOP_NAV_MQ = "(min-width: 768px)";
 /**
  * Studio navigation — transparent at rest, frosted glass on scroll.
  *
- * Layout: logo (left) · links (center, desktop) · CTA (right).
+ * Layout: logo (left) · links (center, desktop) · locale + menu (right).
  * Mobile: menu trigger + slide-over panel. Scroll state is driven by a
  * rAF-coalesced hook that only re-renders when crossing the threshold.
  */
@@ -80,7 +77,7 @@ export function SiteHeader() {
           >
             <div className="relative flex min-h-0 min-w-0 w-full flex-1 items-center justify-between gap-3 md:contents">
               <div className="min-w-0 shrink md:justify-self-start">
-                <Logo className="min-w-0 max-w-[min(48vw,11rem)] sm:max-w-none" />
+                <Logo className="min-w-0 max-w-[min(52vw,13rem)] sm:max-w-none" />
               </div>
 
             <nav
@@ -96,19 +93,6 @@ export function SiteHeader() {
 
             <div className="flex shrink-0 items-center justify-end gap-2 md:justify-self-end">
               <LocaleSwitcher className="hidden sm:inline-flex" />
-              <Magnetic className="hidden sm:inline-flex">
-                <Button
-                  asChild
-                  size="sm"
-                  className={cn(
-                    "shadow-[0_1px_0_0_hsl(0_0%_100%/0.1)_inset]",
-                    "transition-shadow duration-300",
-                    "hover:shadow-[0_0_0_1px_hsl(var(--accent)/0.4),0_10px_36px_-8px_hsl(var(--accent)/0.4)]",
-                  )}
-                >
-                  <Link href={localizeHref(site.cta.href, locale)}>{site.cta.label}</Link>
-                </Button>
-              </Magnetic>
 
               <button
                 type="button"

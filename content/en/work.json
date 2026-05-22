@@ -17,7 +17,7 @@
     },
     {
       "slug": "northwind-trade",
-      "title": "Northwind",
+      "title": "Taom",
       "category": "Commerce",
       "year": "2024",
       "description": "Headless storefront and fulfilment dashboards for a midsize apparel brand migrating off legacy infra.",

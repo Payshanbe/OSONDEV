@@ -9,7 +9,7 @@ export function StudioMarquee() {
 
   return (
     <section
-      aria-label="Studio coordinates"
+      aria-label="OSON dev coordinates"
       className="relative border-y border-border/60 bg-secondary/20"
     >
       <div className="container-wide">
