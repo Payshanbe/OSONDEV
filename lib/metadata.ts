@@ -1,0 +1,106 @@
+import type { Metadata } from "next";
+
+import { getSiteConfig } from "@/lib/content";
+import { defaultLocale, locales, ogLocale, type Locale } from "@/lib/i18n/config";
+import { absoluteUrl } from "./utils";
+
+interface BuildMetadataOptions {
+  title?: string;
+  description?: string;
+  /** Path without locale prefix, e.g. `/` or `/work/foo` */
+  path?: string;
+  image?: string;
+  noIndex?: boolean;
+  locale?: Locale;
+}
+
+/**
+ * Compose page-level metadata from a small set of overrides while keeping
+ * sensible studio-wide defaults (titles, OG, robots, canonical, etc).
+ */
+export function buildMetadata({
+  title,
+  description,
+  path = "/",
+  image,
+  noIndex = false,
+  locale = defaultLocale,
+}: BuildMetadataOptions = {}): Metadata {
+  const site = getSiteConfig(locale);
+  const resolvedDescription = description ?? site.description;
+  const resolvedImage = image ?? site.ogImage;
+  const resolvedTitle = title
+    ? `${title} — ${site.name}`
+    : `${site.name} — ${site.tagline}`;
+
+  const localizedPath = path === "/" ? `/${locale}` : `/${locale}${path}`;
+  const url = absoluteUrl(localizedPath);
+
+  const languages: Record<string, string> = {};
+  for (const loc of locales) {
+    const altPath = path === "/" ? `/${loc}` : `/${loc}${path}`;
+    languages[loc] = absoluteUrl(altPath);
+  }
+
+  return {
+    metadataBase: new URL(site.url),
+    title: {
+      default: resolvedTitle,
+      template: `%s — ${site.name}`,
+    },
+    description: resolvedDescription,
+    keywords: [...site.keywords],
+    authors: site.authors.map((a) => ({ name: a.name, url: a.url })),
+    creator: site.name,
+    publisher: site.name,
+    alternates: {
+      canonical: url,
+      languages,
+    },
+    openGraph: {
+      type: "website",
+      locale: ogLocale[locale],
+      url,
+      siteName: site.name,
+      title: resolvedTitle,
+      description: resolvedDescription,
+      images: [
+        {
+          url: resolvedImage,
+          width: 1200,
+          height: 630,
+          alt: resolvedTitle,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: resolvedTitle,
+      description: resolvedDescription,
+      images: [resolvedImage],
+      creator: "@sitanstudio",
+    },
+    robots: noIndex
+      ? { index: false, follow: false }
+      : {
+          index: true,
+          follow: true,
+          googleBot: {
+            index: true,
+            follow: true,
+            "max-image-preview": "large",
+            "max-snippet": -1,
+            "max-video-preview": -1,
+          },
+        },
+    icons: {
+      icon: [{ url: "/favicon.ico" }],
+      shortcut: ["/favicon.ico"],
+    },
+    formatDetection: {
+      email: false,
+      address: false,
+      telephone: false,
+    },
+  };
+}

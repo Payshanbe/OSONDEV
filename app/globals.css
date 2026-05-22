@@ -1,0 +1,224 @@
+@import "lenis/dist/lenis.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light theme reserved for future toggles. The site ships dark by default. */
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    /* Studio palette — near-black canvas, cool neutral text, soft violet accent. */
+    --background: 240 10% 3.5%;
+    --foreground: 0 0% 98%;
+    --card: 240 8% 5%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 8% 5%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 10% 4%;
+    --secondary: 240 6% 10%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 5% 12%;
+    --muted-foreground: 240 5% 65%;
+    --accent: 263 70% 60%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 6% 14%;
+    --input: 240 6% 14%;
+    --ring: 263 70% 60%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "ss01", "cv11", "rlig" 1, "calt" 1;
+    overflow-x: hidden;
+  }
+
+  /* Custom cursor (marketing): toggled client-side — desktop fine pointer only */
+  html.cursor-none-marketing,
+  html.cursor-none-marketing * {
+    cursor: none !important;
+  }
+
+  ::selection {
+    background: hsl(var(--accent) / 0.35);
+    color: hsl(var(--foreground));
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted));
+  }
+}
+
+@layer components {
+  .hairline {
+    box-shadow: inset 0 0 0 1px hsl(var(--border));
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-border/80 bg-secondary/40 px-3 py-1 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground backdrop-blur;
+  }
+
+  /**
+   * Hero H1 — Tailwind preflight sets headings to font-size: inherit (body = ~16px).
+   * Size is set by ID so it always applies, even if a utility class is missing from HMR.
+   */
+  #hero-heading {
+    font-size: clamp(2.5rem, 6.5vw, 5rem);
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    font-weight: 600;
+    max-width: 20ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (min-width: 640px) {
+    #hero-heading {
+      max-width: 22ch;
+    }
+  }
+
+  .text-gradient {
+    background: linear-gradient(
+      135deg,
+      hsl(0 0% 100%) 0%,
+      hsl(0 0% 88%) 35%,
+      hsl(263 60% 78%) 75%,
+      hsl(0 0% 70%) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, hsl(var(--border) / 0.4) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--border) / 0.4) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 85% 65% at 50% 28%, black 35%, transparent 78%);
+    -webkit-mask-image: radial-gradient(ellipse 85% 65% at 50% 28%, black 35%, transparent 78%);
+  }
+
+  .vignette {
+    background: radial-gradient(
+      ellipse at center,
+      transparent 0%,
+      transparent 50%,
+      hsl(var(--background) / 0.5) 88%,
+      hsl(var(--background) / 0.92) 100%
+    );
+  }
+
+  /* Aurora blobs — organic drift, transform-only for compositor */
+  .aurora-blob {
+    transform: translate3d(0, 0, 0);
+  }
+
+  @keyframes aurora-drift-a {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    33% {
+      transform: translate3d(1.2%, -0.8%, 0) scale(1.02);
+    }
+    66% {
+      transform: translate3d(-0.9%, 0.6%, 0) scale(1.01);
+    }
+  }
+
+  @keyframes aurora-drift-b {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    40% {
+      transform: translate3d(1.8%, -1.2%, 0) scale(1.025);
+    }
+    70% {
+      transform: translate3d(-1.4%, 0.9%, 0) scale(1.015);
+    }
+  }
+
+  @keyframes aurora-drift-c {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+      transform: translate3d(-1.1%, -0.7%, 0) scale(1.02);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .aurora-blob {
+      animation: none !important;
+    }
+  }
+}
+
+@layer utilities {
+  .container-tight {
+    @apply mx-auto w-full max-w-6xl px-6 sm:px-8 lg:px-12;
+  }
+
+  .container-wide {
+    @apply mx-auto w-full max-w-[88rem] px-6 sm:px-8 lg:px-12;
+  }
+
+  .focus-ring {
+    @apply outline-none ring-offset-background transition-shadow focus-visible:ring-2 focus-visible:ring-accent/60 focus-visible:ring-offset-2;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}

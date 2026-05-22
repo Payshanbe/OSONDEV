@@ -1,0 +1,36 @@
+/* ---------------------------------------------------------------------------
+ * styles/motion.css
+ *
+ * Optional, route-scoped motion utilities. Import this stylesheet from any
+ * page or section that needs the additional motion utilities below without
+ * paying the bundle cost on the rest of the site.
+ *
+ * Usage:
+ *   import "@/styles/motion.css";
+ * --------------------------------------------------------------------------- */
+
+@keyframes slow-pulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50%      { opacity: 1;   transform: scale(1.02); }
+}
+
+@keyframes drift {
+  0%   { transform: translate3d(0, 0, 0); }
+  50%  { transform: translate3d(0, -6px, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+.motion-slow-pulse {
+  animation: slow-pulse 6s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+.motion-drift {
+  animation: drift 9s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-slow-pulse,
+  .motion-drift {
+    animation: none;
+  }
+}
