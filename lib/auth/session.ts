@@ -1,6 +1,11 @@
 import { createHmac, timingSafeEqual } from "crypto";
 
-import { ADMIN_COOKIE_MAX_AGE_SEC, ADMIN_COOKIE_NAME, getAuthSecret } from "@/lib/auth/constants";
+import {
+  ADMIN_COOKIE_MAX_AGE_SEC,
+  ADMIN_COOKIE_NAME,
+  getAuthSecret,
+  getConfiguredAdminPassword,
+} from "@/lib/auth/constants";
 
 export function getAdminCookieName() {
   return ADMIN_COOKIE_NAME;
@@ -49,7 +54,7 @@ export function verifySessionToken(token: string | undefined | null): boolean {
 }
 
 export function verifyAdminPassword(password: string): boolean {
-  const expected = process.env.ADMIN_PASSWORD?.trim();
+  const expected = getConfiguredAdminPassword();
   const normalized = password.trim();
   if (!expected) {
     if (process.env.NODE_ENV === "production") return false;
@@ -63,7 +68,12 @@ export function verifyAdminPassword(password: string): boolean {
   }
 }
 
-/** True when production deploy is missing ADMIN_PASSWORD. */
+/** True when production deploy has ADMIN_PASSWORD set. */
 export function isAdminPasswordConfigured(): boolean {
-  return Boolean(process.env.ADMIN_PASSWORD?.trim());
+  return Boolean(getConfiguredAdminPassword());
+}
+
+/** Length of configured password — helps verify Vercel env without exposing the value. */
+export function getAdminPasswordLength(): number {
+  return getConfiguredAdminPassword()?.length ?? 0;
 }

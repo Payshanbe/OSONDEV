@@ -24,7 +24,12 @@ export function LoginForm({ redirectTo }: { redirectTo?: string }) {
     <form action={formAction} className="mt-8 space-y-5">
       <input type="hidden" name="from" value={redirectTo ?? "/admin"} />
       {state.message && !state.ok ? <FormStatus state={state} /> : null}
-      <FormField label="Password" name="password" type="password" />
+      <FormField
+        label="Password"
+        name="password"
+        type="password"
+        hint="On Vercel use ADMIN_PASSWORD from project settings, not .env.local."
+      />
       <fieldset disabled={isPending}>
         <SubmitButton label={isPending ? "Signing in…" : "Sign in"} />
       </fieldset>
