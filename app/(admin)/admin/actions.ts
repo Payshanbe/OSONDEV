@@ -14,6 +14,7 @@ import {
 } from "@/lib/auth/session";
 import type { SiteSettings, SiteSections, WorkProject } from "@/lib/content/types";
 import {
+  isGitHubStorageEnabled,
   readSiteContent,
   readWorkContent,
   writeSiteContent,
@@ -26,8 +27,18 @@ export type ActionState = { ok: boolean; message: string };
 /** Login form state — `redirectTo` set after a successful sign-in. */
 export type LoginState = ActionState & { redirectTo?: string };
 
-const OK: ActionState = { ok: true, message: "Saved." };
 const FAIL = (message: string): ActionState => ({ ok: false, message });
+
+function saveOk(): ActionState {
+  if (isGitHubStorageEnabled()) {
+    return {
+      ok: true,
+      message:
+        "Saved to GitHub. The live site updates after Vercel finishes deploying (about 1–2 minutes).",
+    };
+  }
+  return { ok: true, message: "Saved." };
+}
 
 async function requireAdmin() {
   const token = (await cookies()).get(getAdminCookieName())?.value;
@@ -128,9 +139,9 @@ export async function saveSiteSettingsAction(
 
     await writeSiteContent({ ...current, site }, locale);
     revalidateMarketing();
-    return OK;
-  } catch {
-    return FAIL("Could not save settings.");
+    return saveOk();
+  } catch (e) {
+    return FAIL(e instanceof Error ? e.message : "Could not save settings.");
   }
 }
 
@@ -206,9 +217,9 @@ export async function saveSectionsAction(
 
     await writeSiteContent({ ...current, sections }, locale);
     revalidateMarketing();
-    return OK;
-  } catch {
-    return FAIL("Could not save section.");
+    return saveOk();
+  } catch (e) {
+    return FAIL(e instanceof Error ? e.message : "Could not save section.");
   }
 }
 
@@ -281,9 +292,9 @@ export async function saveWorkProjectAction(
     await writeWorkContent({ projects }, locale);
     revalidateMarketing();
     revalidateWorkSlug(slug);
-    return OK;
-  } catch {
-    return FAIL("Could not save project.");
+    return saveOk();
+  } catch (e) {
+    return FAIL(e instanceof Error ? e.message : "Could not save project.");
   }
 }
 
@@ -302,8 +313,8 @@ export async function deleteWorkProjectAction(
     await writeWorkContent({ projects }, loc);
     revalidateMarketing();
     revalidateWorkSlug(slug);
-    return OK;
-  } catch {
-    return FAIL("Could not delete project.");
+    return saveOk();
+  } catch (e) {
+    return FAIL(e instanceof Error ? e.message : "Could not delete project.");
   }
 }

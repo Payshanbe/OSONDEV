@@ -6,6 +6,13 @@ import { DEFAULT_SITE_CONTENT, DEFAULT_WORK_CONTENT } from "@/lib/content/defaul
 import { DEFAULT_SITE_CONTENT_RU, DEFAULT_WORK_CONTENT_RU } from "@/lib/content/defaults-ru";
 import type { SiteContent, WorkContent } from "@/lib/content/types";
 import { defaultLocale, isValidLocale, type Locale } from "@/lib/i18n/config";
+import { isGitHubStorageEnabled, readGitHubFile, writeGitHubFile } from "@/lib/content/github";
+import {
+  commitMessage,
+  contentRepoPath,
+  resolveReadPaths,
+  type ContentFileKind,
+} from "@/lib/content/paths";
 
 const CONTENT_DIR = path.join(process.cwd(), "content");
 const LEGACY_SITE_FILE = path.join(CONTENT_DIR, "site.json");
@@ -79,52 +86,85 @@ function readJsonFileSync(filePath: string): string | null {
   }
 }
 
+async function readRawContent(kind: ContentFileKind, locale: Locale): Promise<string | null> {
+  if (isGitHubStorageEnabled()) {
+    for (const repoPath of resolveReadPaths(kind, locale)) {
+      const raw = await readGitHubFile(repoPath);
+      if (raw) return raw;
+    }
+    return null;
+  }
+
+  const localPath = kind === "site" ? siteFile(locale) : workFile(locale);
+  const legacyPath = kind === "site" ? LEGACY_SITE_FILE : LEGACY_WORK_FILE;
+  return (
+    (await readJsonFile(localPath)) ?? (locale === defaultLocale ? await readJsonFile(legacyPath) : null)
+  );
+}
+
+function readRawContentSync(kind: ContentFileKind, locale: Locale): string | null {
+  const localPath = kind === "site" ? siteFile(locale) : workFile(locale);
+  const legacyPath = kind === "site" ? LEGACY_SITE_FILE : LEGACY_WORK_FILE;
+  return (
+    readJsonFileSync(localPath) ?? (locale === defaultLocale ? readJsonFileSync(legacyPath) : null)
+  );
+}
+
 export async function readSiteContent(locale?: string): Promise<SiteContent> {
   const loc = resolveLocale(locale);
-  const raw =
-    (await readJsonFile(siteFile(loc))) ??
-    (loc === defaultLocale ? await readJsonFile(LEGACY_SITE_FILE) : null);
+  const raw = await readRawContent("site", loc);
   if (raw) return mergeSiteContent(JSON.parse(raw) as Partial<SiteContent>, loc);
   return defaultSiteFor(loc);
 }
 
 export async function readWorkContent(locale?: string): Promise<WorkContent> {
   const loc = resolveLocale(locale);
-  const raw =
-    (await readJsonFile(workFile(loc))) ??
-    (loc === defaultLocale ? await readJsonFile(LEGACY_WORK_FILE) : null);
+  const raw = await readRawContent("work", loc);
   if (raw) return mergeWorkContent(JSON.parse(raw) as Partial<WorkContent>, loc);
   return defaultWorkFor(loc);
 }
 
 export function readSiteContentSync(locale?: string): SiteContent {
   const loc = resolveLocale(locale);
-  const raw =
-    readJsonFileSync(siteFile(loc)) ??
-    (loc === defaultLocale ? readJsonFileSync(LEGACY_SITE_FILE) : null);
+  const raw = readRawContentSync("site", loc);
   if (raw) return mergeSiteContent(JSON.parse(raw) as Partial<SiteContent>, loc);
   return defaultSiteFor(loc);
 }
 
 export function readWorkContentSync(locale?: string): WorkContent {
   const loc = resolveLocale(locale);
-  const raw =
-    readJsonFileSync(workFile(loc)) ??
-    (loc === defaultLocale ? readJsonFileSync(LEGACY_WORK_FILE) : null);
+  const raw = readRawContentSync("work", loc);
   if (raw) return mergeWorkContent(JSON.parse(raw) as Partial<WorkContent>, loc);
   return defaultWorkFor(loc);
 }
 
+async function writeRawContent(
+  kind: ContentFileKind,
+  locale: Locale,
+  json: string,
+): Promise<void> {
+  if (isGitHubStorageEnabled()) {
+    const repoPath = contentRepoPath(kind, locale);
+    await writeGitHubFile(repoPath, json, commitMessage(kind, locale));
+    return;
+  }
+
+  const filePath = kind === "site" ? siteFile(locale) : workFile(locale);
+  const dir = path.join(CONTENT_DIR, locale);
+  if (!existsSync(dir)) await mkdir(dir, { recursive: true });
+  await writeFile(filePath, json, "utf-8");
+}
+
 export async function writeSiteContent(content: SiteContent, locale: string): Promise<void> {
   const loc = resolveLocale(locale);
-  const dir = path.join(CONTENT_DIR, loc);
-  if (!existsSync(dir)) await mkdir(dir, { recursive: true });
-  await writeFile(siteFile(loc), `${JSON.stringify(content, null, 2)}\n`, "utf-8");
+  const json = `${JSON.stringify(content, null, 2)}\n`;
+  await writeRawContent("site", loc, json);
 }
 
 export async function writeWorkContent(content: WorkContent, locale: string): Promise<void> {
   const loc = resolveLocale(locale);
-  const dir = path.join(CONTENT_DIR, loc);
-  if (!existsSync(dir)) await mkdir(dir, { recursive: true });
-  await writeFile(workFile(loc), `${JSON.stringify(content, null, 2)}\n`, "utf-8");
+  const json = `${JSON.stringify(content, null, 2)}\n`;
+  await writeRawContent("work", loc, json);
 }
+
+export { isGitHubStorageEnabled } from "@/lib/content/github";

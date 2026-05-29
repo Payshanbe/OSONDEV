@@ -1,4 +1,5 @@
 import { AdminNav } from "@/components/admin/admin-nav";
+import { GitHubStorageBanner } from "@/components/admin/github-storage-banner";
 
 export default function AdminDashboardLayout({
   children,
@@ -10,7 +11,10 @@ export default function AdminDashboardLayout({
       <aside className="w-full shrink-0 lg:w-52">
         <AdminNav />
       </aside>
-      <div className="min-w-0 flex-1 pb-16">{children}</div>
+      <div className="min-w-0 flex-1 pb-16">
+        <GitHubStorageBanner />
+        {children}
+      </div>
     </div>
   );
 }
