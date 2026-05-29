@@ -3,7 +3,7 @@
 import { createContext, useContext } from "react";
 
 import type { SiteContent } from "@/lib/content/types";
-import { defaultLocale, type Locale } from "@/lib/i18n/config";
+import type { Locale } from "@/lib/i18n/config";
 
 type SiteContentContextValue = {
   content: SiteContent;
