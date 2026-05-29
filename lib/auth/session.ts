@@ -49,15 +49,21 @@ export function verifySessionToken(token: string | undefined | null): boolean {
 }
 
 export function verifyAdminPassword(password: string): boolean {
-  const expected = process.env.ADMIN_PASSWORD;
+  const expected = process.env.ADMIN_PASSWORD?.trim();
+  const normalized = password.trim();
   if (!expected) {
     if (process.env.NODE_ENV === "production") return false;
-    return password === "dev-admin-change-me";
+    return normalized === "dev-admin-change-me";
   }
-  if (password.length !== expected.length) return false;
+  if (normalized.length !== expected.length) return false;
   try {
-    return timingSafeEqual(Buffer.from(password), Buffer.from(expected));
+    return timingSafeEqual(Buffer.from(normalized), Buffer.from(expected));
   } catch {
     return false;
   }
+}
+
+/** True when production deploy is missing ADMIN_PASSWORD. */
+export function isAdminPasswordConfigured(): boolean {
+  return Boolean(process.env.ADMIN_PASSWORD?.trim());
 }

@@ -10,6 +10,7 @@ import {
   getAdminCookieName,
   verifyAdminPassword,
   verifySessionToken,
+  isAdminPasswordConfigured,
 } from "@/lib/auth/session";
 import type { SiteSettings, SiteSections, WorkProject } from "@/lib/content/types";
 import {
@@ -57,7 +58,14 @@ export async function loginAction(
   _prev: LoginState | null,
   formData: FormData,
 ): Promise<LoginState> {
-  const password = String(formData.get("password") ?? "");
+  const password = String(formData.get("password") ?? "").trim();
+
+  if (process.env.NODE_ENV === "production" && !isAdminPasswordConfigured()) {
+    return FAIL(
+      "Admin password is not configured on the server. Add ADMIN_PASSWORD in Vercel → Settings → Environment Variables, then Redeploy.",
+    );
+  }
+
   if (!verifyAdminPassword(password)) {
     return FAIL("Invalid password.");
   }
