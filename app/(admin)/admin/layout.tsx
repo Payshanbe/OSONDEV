@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Admin",
+  title: "OSONDEV Admin",
   path: "/admin",
   noIndex: true,
 });
@@ -14,7 +14,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       <header className="border-b border-border/60">
         <div className="container-wide flex h-14 items-center justify-between">
           <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
-            Sitan · Admin
+            OSONDEV Admin
           </p>
           <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground/70">
             Content CMS

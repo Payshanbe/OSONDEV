@@ -20,7 +20,7 @@ export default async function AdminLoginPage({
     <div className="container-wide flex min-h-[calc(100svh-3.5rem)] flex-col items-center justify-center py-16">
       <div className="w-full max-w-sm">
         <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
-          Admin
+          OSONDEV Admin
         </p>
         <h1 className="mt-3 text-2xl font-semibold tracking-tight">Sign in</h1>
         <p className="mt-2 text-sm text-muted-foreground">
