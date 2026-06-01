@@ -2,7 +2,7 @@
   "projects": [
     {
       "slug": "atlas-metrics",
-      "title": "MotionDesign",
+      "title": "Motion Design",
       "category": "Matlush",
       "year": "2077",
       "description": "A metrics layer for SaaS operators — realtime charts, anomalies, and a calm interface that survives long sessions.",
