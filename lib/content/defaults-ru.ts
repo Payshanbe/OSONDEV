@@ -23,12 +23,12 @@ export const DEFAULT_SITE_CONTENT_RU: SiteContent = {
       label: "Начать проект",
       href: "/#contact",
     },
-    social: {
-      twitter: "https://twitter.com/sitanstudio",
-      github: "https://github.com/sitanstudio",
-      dribbble: "https://dribbble.com/sitanstudio",
-      linkedin: "https://linkedin.com/company/sitanstudio",
-    },
+    social: [
+      { label: "Twitter", href: "https://twitter.com/sitanstudio" },
+      { label: "GitHub", href: "https://github.com/sitanstudio" },
+      { label: "Dribbble", href: "https://dribbble.com/sitanstudio" },
+      { label: "LinkedIn", href: "https://linkedin.com/company/sitanstudio" },
+    ],
     authors: [{ name: "OSON Dev", url: "https://sitan.studio" }],
     keywords: [
       "дизайн-студия",

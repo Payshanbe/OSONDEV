@@ -1,3 +1,8 @@
+export interface SocialLink {
+  label: string;
+  href: string;
+}
+
 /** Studio-wide settings (nav, SEO, contact). */
 export interface SiteSettings {
   name: string;
@@ -12,12 +17,7 @@ export interface SiteSettings {
   founded: number;
   nav: { label: string; href: string }[];
   cta: { label: string; href: string };
-  social: {
-    twitter: string;
-    github: string;
-    dribbble: string;
-    linkedin: string;
-  };
+  social: SocialLink[];
   authors: { name: string; url: string }[];
   keywords: string[];
 }

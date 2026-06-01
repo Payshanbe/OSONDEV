@@ -32,12 +32,15 @@
       "label": "Start a project",
       "href": "/#contact"
     },
-    "social": {
-      "twitter": "https://www.instagram.com/osondev.tj?igsh=YzZxNXA1eXlzOHhs&utm_source=qr",
-      "github": "https://github.com/osondev",
-      "dribbble": "https://dribbble.com/osondev",
-      "linkedin": "https://linkedin.com/company/osondev"
-    },
+    "social": [
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/osondev.tj?igsh=YzZxNXA1eXlzOHhs&utm_source=qr"
+      },
+      { "label": "GitHub", "href": "https://github.com/osondev" },
+      { "label": "Dribbble", "href": "https://dribbble.com/osondev" },
+      { "label": "LinkedIn", "href": "https://linkedin.com/company/osondev" }
+    ],
     "authors": [
       {
         "name": "OSON Dev",

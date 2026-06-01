@@ -4,7 +4,8 @@ import path from "node:path";
 
 import { DEFAULT_SITE_CONTENT, DEFAULT_WORK_CONTENT } from "@/lib/content/defaults";
 import { DEFAULT_SITE_CONTENT_RU, DEFAULT_WORK_CONTENT_RU } from "@/lib/content/defaults-ru";
-import type { SiteContent, WorkContent } from "@/lib/content/types";
+import type { SiteContent, SocialLink, WorkContent } from "@/lib/content/types";
+import { normalizeSocialLinks } from "@/lib/content/normalize-social";
 import { defaultLocale, isValidLocale, type Locale } from "@/lib/i18n/config";
 import { isGitHubStorageEnabled, readGitHubFile, writeGitHubFile } from "@/lib/content/github";
 import {
@@ -36,8 +37,15 @@ function defaultWorkFor(locale: Locale): WorkContent {
 
 function mergeSiteContent(parsed: Partial<SiteContent>, locale: Locale): SiteContent {
   const base = defaultSiteFor(locale);
+  const mergedSite = { ...base.site, ...parsed.site };
   return {
-    site: { ...base.site, ...parsed.site },
+    site: {
+      ...mergedSite,
+      social: normalizeSocialLinks(
+        parsed.site?.social as SocialLink[] | Record<string, string> | undefined,
+        base.site.social,
+      ),
+    },
     sections: {
       hero: { ...base.sections.hero, ...parsed.sections?.hero },
       work: { ...base.sections.work, ...parsed.sections?.work },

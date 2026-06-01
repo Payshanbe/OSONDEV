@@ -124,12 +124,7 @@ export async function saveSiteSettingsAction(
         label: String(formData.get("ctaLabel") ?? current.site.cta.label),
         href: String(formData.get("ctaHref") ?? current.site.cta.href),
       },
-      social: {
-        twitter: String(formData.get("socialTwitter") ?? current.site.social.twitter),
-        github: String(formData.get("socialGithub") ?? current.site.social.github),
-        dribbble: String(formData.get("socialDribbble") ?? current.site.social.dribbble),
-        linkedin: String(formData.get("socialLinkedin") ?? current.site.social.linkedin),
-      },
+      social: parseSocialRows(formData),
       nav: parseNavRows(formData),
       authors: current.site.authors,
       keywords: current.site.keywords,
@@ -143,6 +138,14 @@ export async function saveSiteSettingsAction(
   } catch (e) {
     return FAIL(e instanceof Error ? e.message : "Could not save settings.");
   }
+}
+
+function parseSocialRows(formData: FormData): { label: string; href: string }[] {
+  const labels = formData.getAll("socialLabel").map(String);
+  const hrefs = formData.getAll("socialHref").map(String);
+  return labels
+    .map((label, i) => ({ label: label.trim(), href: (hrefs[i] ?? "").trim() }))
+    .filter((item) => item.label && item.href);
 }
 
 function parseNavRows(formData: FormData): { label: string; href: string }[] {

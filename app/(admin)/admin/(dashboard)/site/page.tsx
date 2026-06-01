@@ -2,6 +2,7 @@ import { saveSiteSettingsAction } from "@/app/(admin)/admin/actions";
 import { AdminForm } from "@/components/admin/admin-form";
 import { AdminLocaleTabs } from "@/components/admin/locale-tabs";
 import { FormField } from "@/components/admin/form-field";
+import { SocialFieldsEditor } from "@/components/admin/social-fields";
 import { readSiteContent } from "@/lib/content/storage";
 import type { SiteSettings } from "@/lib/content/types";
 import { resolveAdminLocale } from "@/lib/admin/resolve-locale";
@@ -78,12 +79,10 @@ function SiteSettingsFields({ site }: { site: SiteSettings }) {
 
       <section className="space-y-4 border-t border-border/50 pt-8">
         <h2 className="text-sm font-semibold">Social</h2>
-        <div className="grid gap-5 sm:grid-cols-2">
-          <FormField label="Twitter" name="socialTwitter" defaultValue={site.social.twitter} type="url" />
-          <FormField label="GitHub" name="socialGithub" defaultValue={site.social.github} type="url" />
-          <FormField label="Dribbble" name="socialDribbble" defaultValue={site.social.dribbble} type="url" />
-          <FormField label="LinkedIn" name="socialLinkedin" defaultValue={site.social.linkedin} type="url" />
-        </div>
+        <p className="text-sm text-muted-foreground">
+          Titles and URLs shown in the footer. Add, edit, or remove links per locale.
+        </p>
+        <SocialFieldsEditor items={site.social} />
       </section>
     </>
   );

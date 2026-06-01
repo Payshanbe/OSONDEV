@@ -18,13 +18,6 @@ export function SiteFooter() {
   const locale = useLocale();
   const year = new Date().getFullYear();
 
-  const social = [
-    { label: "Twitter", href: site.social.twitter },
-    { label: "GitHub", href: site.social.github },
-    { label: "Dribbble", href: site.social.dribbble },
-    { label: "LinkedIn", href: site.social.linkedin },
-  ];
-
   return (
     <footer className="relative border-t border-border/40">
       <div className="container-wide py-16 sm:py-20">
@@ -62,8 +55,8 @@ export function SiteFooter() {
               Social
             </p>
             <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
-              {social.map((item) => (
-                <li key={item.href}>
+              {site.social.map((item, index) => (
+                <li key={`${item.href}-${index}`}>
                   <FooterLink href={item.href} external>
                     {item.label}
                   </FooterLink>
