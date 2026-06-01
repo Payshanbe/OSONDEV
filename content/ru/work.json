@@ -5,7 +5,7 @@
       "title": "MotionDesign",
       "category": "Matlush",
       "year": "2077",
-      "description": "A metrics layer for SaaS operators — realtime charts, anomalies, and a calm interface that survives long sessions.",
+      "description": "Мы создаем motion-дизайн, который не просто выглядит красиво, а помогает доносить идеи, усиливать бренд и привлекать внимание аудитории.",
       "stack": [
         "Next.js",
         "TypeScript",
@@ -13,7 +13,7 @@
       ],
       "accent": "hsl(220 42% 18%)",
       "glow": "hsl(220 76% 58% / 0.35)",
-      "body": "Extended case narratives, outcome metrics, and process notes are prepared for qualified conversations. Reach out below if you'd like this study in full — or browse the homepage grid while we finalize the archive."
+      "body": "Наш подход основан на сочетании визуальной эстетики, продуманной анимации и современных технологий. Мы внимательно изучаем цели проекта, целевую аудиторию и фирменный стиль, чтобы каждая анимация работала на результат."
     },
     {
       "slug": "northwind-trade",
