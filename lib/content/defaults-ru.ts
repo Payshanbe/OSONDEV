@@ -10,7 +10,7 @@ export const DEFAULT_SITE_CONTENT_RU: SiteContent = {
     url: "https://sitan.studio",
     ogImage: "/og.png",
     locale: "ru_RU",
-    email: "studio@sitan.studio",
+    email: "osondev@studio",
     location: "Удалённо — работаем по всему миру",
     founded: 2024,
     nav: [
