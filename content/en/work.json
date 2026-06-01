@@ -3,8 +3,8 @@
     {
       "slug": "atlas-metrics",
       "title": "Motion Design",
-      "category": "Matlush",
-      "year": "2077",
+      "category": "OSONDEV",
+      "year": "2026",
       "description": "A metrics layer for SaaS operators — realtime charts, anomalies, and a calm interface that survives long sessions.",
       "stack": [
         "After Effects",
