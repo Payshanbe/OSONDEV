@@ -29,7 +29,7 @@
       "year": "2024",
       "description": "Headless storefront and fulfilment dashboards for a midsize apparel brand migrating off legacy infra.",
       "stack": [
-        "Shopify Hydrogen",
+        "Next.js",
         "React",
         "Node"
       ],
