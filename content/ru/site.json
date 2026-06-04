@@ -1,9 +1,9 @@
 {
   "site": {
     "name": "OSON",
-    "shortName": "OSON",
+    "shortName": "",
     "tagline": "Студия цифрового дизайна и разработки.",
-    "description": "Независимая студия: проектируем и создаём цифровые продукты для амбициозных команд.",
+    "description": "OsonDev is an independent studio designing and engineering refined digital products for ambitious teams.",
     "url": "https://sitan.studio",
     "ogImage": "/og.png",
     "locale": "ru_RU",
@@ -32,12 +32,12 @@
       "label": "Начать проект",
       "href": "/#contact"
     },
-    "social": {
-      "twitter": "https://www.instagram.com/osondev.tj?igsh=YzZxNXA1eXlzOHhs&utm_source=qrhttps://twitter.com/sitanstudio",
-      "github": "https://github.com/sitanstudio",
-      "dribbble": "https://dribbble.com/sitanstudio",
-      "linkedin": "https://linkedin.com/company/sitanstudio"
-    },
+    "social": [
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/osondev.tj?igsh=YzZxNXA1eXlzOHhs&utm_source=qr"
+      }
+    ],
     "authors": [
       {
         "name": "OSON Dev",
