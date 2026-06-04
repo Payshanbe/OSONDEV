@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 
 interface WorkProjectCoverProps {
   coverImage?: string;
+  coverVideo?: string;
   accent: string;
   glow: string;
   title: string;
@@ -11,21 +12,68 @@ interface WorkProjectCoverProps {
   variant?: "card" | "hero";
 }
 
+function CoverFrame({
+  variant,
+  glow,
+  children,
+}: {
+  variant: "card" | "hero";
+  glow: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div
+      className={cn(
+        "relative w-full overflow-hidden",
+        variant === "card" ? "aspect-[16/10] rounded-t-[15px]" : "aspect-[16/9] rounded-2xl",
+      )}
+    >
+      {children}
+      <div
+        className={cn(
+          "pointer-events-none absolute inset-0 bg-gradient-to-t from-background/85 via-background/10 to-transparent",
+          variant === "hero" && "from-background/90",
+        )}
+      />
+      {variant === "card" ? (
+        <span
+          className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+          style={{
+            background: `radial-gradient(ellipse 90% 40% at 50% -10%, ${glow}, transparent 70%)`,
+          }}
+        />
+      ) : null}
+    </div>
+  );
+}
+
 export function WorkProjectCover({
   coverImage,
+  coverVideo,
   accent,
   glow,
   title,
   variant = "card",
 }: WorkProjectCoverProps) {
+  if (coverVideo) {
+    return (
+      <CoverFrame variant={variant} glow={glow}>
+        <video
+          src={coverVideo}
+          className="absolute inset-0 h-full w-full object-cover"
+          muted
+          loop
+          playsInline
+          autoPlay
+          aria-label={title}
+        />
+      </CoverFrame>
+    );
+  }
+
   if (coverImage) {
     return (
-      <div
-        className={cn(
-          "relative w-full overflow-hidden",
-          variant === "card" ? "aspect-[16/10] rounded-t-[15px]" : "aspect-[16/9] rounded-2xl",
-        )}
-      >
+      <CoverFrame variant={variant} glow={glow}>
         <Image
           src={coverImage}
           alt={title}
@@ -34,21 +82,7 @@ export function WorkProjectCover({
           sizes={variant === "card" ? "(max-width: 1024px) 100vw, 50vw" : "100vw"}
           priority={variant === "hero"}
         />
-        <div
-          className={cn(
-            "pointer-events-none absolute inset-0 bg-gradient-to-t from-background/85 via-background/10 to-transparent",
-            variant === "hero" && "from-background/90",
-          )}
-        />
-        {variant === "card" ? (
-          <span
-            className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-            style={{
-              background: `radial-gradient(ellipse 90% 40% at 50% -10%, ${glow}, transparent 70%)`,
-            }}
-          />
-        ) : null}
-      </div>
+      </CoverFrame>
     );
   }
 

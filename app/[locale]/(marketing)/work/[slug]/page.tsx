@@ -91,6 +91,7 @@ export default async function WorkCasePage({ params }: Props) {
         <div className="mt-10">
           <WorkProjectCover
             coverImage={project.coverImage}
+            coverVideo={project.coverVideo}
             accent={project.accent}
             glow={project.glow}
             title={project.title}

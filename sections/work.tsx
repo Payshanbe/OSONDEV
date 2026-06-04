@@ -70,6 +70,7 @@ function ProjectCard({
   accent,
   glow,
   coverImage,
+  coverVideo,
 }: WorkProject) {
   const locale = useLocale();
 
@@ -99,6 +100,7 @@ function ProjectCard({
 
         <WorkProjectCover
           coverImage={coverImage}
+          coverVideo={coverVideo}
           accent={accent}
           glow={glow}
           title={title}

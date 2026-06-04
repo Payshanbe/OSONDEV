@@ -2,21 +2,36 @@
 
 import Image from "next/image";
 import { useRef, useState } from "react";
-import { ImagePlus, Loader2, Trash2 } from "lucide-react";
+import { upload } from "@vercel/blob/client";
+import { Film, ImagePlus, Loader2, Trash2 } from "lucide-react";
 
-interface CoverImageFieldProps {
-  initialUrl?: string;
-  /** Known slug on edit; on new project leave empty and set slug in form first */
+import { buildWorkMediaPath, isVideoMime, validateMediaFile } from "@/lib/blob";
+
+interface CoverMediaFieldProps {
+  initialImage?: string;
+  initialVideo?: string;
   slug?: string;
 }
 
-export function CoverImageField({ initialUrl = "", slug = "" }: CoverImageFieldProps) {
+export function CoverMediaField({
+  initialImage = "",
+  initialVideo = "",
+  slug = "",
+}: CoverMediaFieldProps) {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [url, setUrl] = useState(initialUrl);
+  const [coverImage, setCoverImage] = useState(initialImage);
+  const [coverVideo, setCoverVideo] = useState(initialVideo);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
 
-  async function upload(file: File) {
+  const hasMedia = Boolean(coverImage || coverVideo);
+
+  function clearMedia() {
+    setCoverImage("");
+    setCoverVideo("");
+  }
+
+  async function uploadFile(file: File) {
     const slugInput = document.querySelector<HTMLInputElement>('input[name="slug"]');
     const projectSlug = slugInput?.value.trim() || slug;
     if (!projectSlug) {
@@ -24,23 +39,31 @@ export function CoverImageField({ initialUrl = "", slug = "" }: CoverImageFieldP
       return;
     }
 
+    const validationError = validateMediaFile(file);
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
+
     setUploading(true);
     setError("");
 
-    const body = new FormData();
-    body.append("file", file);
-    body.append("slug", projectSlug);
-
     try {
-      const res = await fetch("/api/admin/upload", { method: "POST", body });
-      const data = (await res.json()) as { url?: string; error?: string };
-      if (!res.ok) {
-        setError(data.error ?? "Upload failed.");
-        return;
+      const pathname = buildWorkMediaPath(projectSlug, file.name);
+      const blob = await upload(pathname, file, {
+        access: "public",
+        handleUploadUrl: "/api/admin/upload",
+      });
+
+      if (isVideoMime(file.type)) {
+        setCoverImage("");
+        setCoverVideo(blob.url);
+      } else {
+        setCoverVideo("");
+        setCoverImage(blob.url);
       }
-      if (data.url) setUrl(data.url);
-    } catch {
-      setError("Upload failed. Check your connection.");
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Upload failed.");
     } finally {
       setUploading(false);
     }
@@ -48,7 +71,7 @@ export function CoverImageField({ initialUrl = "", slug = "" }: CoverImageFieldP
 
   function onPick(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
-    if (file) void upload(file);
+    if (file) void uploadFile(file);
     e.target.value = "";
   }
 
@@ -56,12 +79,12 @@ export function CoverImageField({ initialUrl = "", slug = "" }: CoverImageFieldP
     <div className="space-y-3 rounded-lg border border-border/50 bg-secondary/20 p-4">
       <div className="flex items-center justify-between gap-2">
         <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-          Cover image
+          Cover image or video
         </span>
-        {url ? (
+        {hasMedia ? (
           <button
             type="button"
-            onClick={() => setUrl("")}
+            onClick={clearMedia}
             className="inline-flex items-center gap-1.5 text-xs text-red-400/90 hover:text-red-300"
           >
             <Trash2 className="size-3.5" aria-hidden />
@@ -70,11 +93,24 @@ export function CoverImageField({ initialUrl = "", slug = "" }: CoverImageFieldP
         ) : null}
       </div>
 
-      <input type="hidden" name="coverImage" value={url} />
+      <input type="hidden" name="coverImage" value={coverImage} />
+      <input type="hidden" name="coverVideo" value={coverVideo} />
 
-      {url ? (
+      {coverVideo ? (
         <div className="relative aspect-[16/10] w-full max-w-md overflow-hidden rounded-lg border border-border/60">
-          <Image src={url} alt="Project cover preview" fill className="object-cover" sizes="400px" />
+          <video
+            src={coverVideo}
+            className="h-full w-full object-cover"
+            muted
+            loop
+            playsInline
+            autoPlay
+            controls
+          />
+        </div>
+      ) : coverImage ? (
+        <div className="relative aspect-[16/10] w-full max-w-md overflow-hidden rounded-lg border border-border/60">
+          <Image src={coverImage} alt="Project cover preview" fill className="object-cover" sizes="400px" />
         </div>
       ) : (
         <p className="text-xs text-muted-foreground/80">
@@ -86,7 +122,7 @@ export function CoverImageField({ initialUrl = "", slug = "" }: CoverImageFieldP
         <input
           ref={inputRef}
           type="file"
-          accept="image/jpeg,image/png,image/webp,image/avif,image/gif"
+          accept="image/jpeg,image/png,image/webp,image/avif,image/gif,video/mp4,video/webm,video/quicktime"
           className="sr-only"
           onChange={onPick}
           disabled={uploading}
@@ -99,16 +135,19 @@ export function CoverImageField({ initialUrl = "", slug = "" }: CoverImageFieldP
         >
           {uploading ? (
             <Loader2 className="size-4 animate-spin" aria-hidden />
+          ) : coverVideo ? (
+            <Film className="size-4" aria-hidden />
           ) : (
             <ImagePlus className="size-4" aria-hidden />
           )}
-          {uploading ? "Uploading…" : url ? "Replace image" : "Upload image"}
+          {uploading ? "Uploading…" : hasMedia ? "Replace" : "Upload image or video"}
         </button>
       </div>
 
       {error ? <p className="text-xs text-red-400/90">{error}</p> : null}
       <p className="text-xs text-muted-foreground/70">
-        Stored on Vercel Blob (max 4 MB). WebP recommended. Save the project after upload.
+        Vercel Blob: images up to 4 MB, short videos (MP4/WebM/MOV) up to 50 MB. Save the project
+        after upload.
       </p>
     </div>
   );

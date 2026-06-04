@@ -87,8 +87,10 @@ export interface WorkProject {
   glow: string;
   /** Extended case copy for `/work/[slug]` */
   body?: string;
-  /** Public URL — Vercel Blob or external CDN */
+  /** Public image URL — Vercel Blob or external CDN */
   coverImage?: string;
+  /** Short loop/preview video — Vercel Blob (MP4/WebM/MOV) */
+  coverVideo?: string;
 }
 
 export interface WorkContent {

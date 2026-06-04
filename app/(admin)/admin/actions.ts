@@ -282,6 +282,7 @@ export async function saveWorkProjectAction(
       glow: String(formData.get("glow") ?? ""),
       body: String(formData.get("body") ?? ""),
       coverImage: String(formData.get("coverImage") ?? "").trim() || undefined,
+      coverVideo: String(formData.get("coverVideo") ?? "").trim() || undefined,
     };
 
     const work = await readWorkContent(locale);
