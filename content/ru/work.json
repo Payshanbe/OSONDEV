@@ -14,7 +14,16 @@
       "accent": "hsl(220 42% 18%)",
       "glow": "hsl(220 76% 58% / 0.35)",
       "body": "Наш подход основан на сочетании визуальной эстетики, продуманной анимации и современных технологий. Мы внимательно изучаем цели проекта, целевую аудиторию и фирменный стиль, чтобы каждая анимация работала на результат.",
-      "coverVideo": "https://tilqnomrkwqaon02.public.blob.vercel-storage.com/work/atlas-metrics/1780573657434-Algoryexplainersnippet1-ezgif.com-gif-to-mp4-converter-el0nRkGThRns419N8AfBgPN8Cgo2qG.mp4"
+      "gallery": [
+        {
+          "url": "https://tilqnomrkwqaon02.public.blob.vercel-storage.com/work/atlas-metrics/1780573657434-Algoryexplainersnippet1-ezgif.com-gif-to-mp4-converter-el0nRkGThRns419N8AfBgPN8Cgo2qG.mp4",
+          "type": "video"
+        },
+        {
+          "url": "https://tilqnomrkwqaon02.public.blob.vercel-storage.com/work/atlas-metrics/1780578820001-HIGURUMA-APbqj4aWF8ca8etY8gwUIVS1Utw9WD.jfif",
+          "type": "image"
+        }
+      ]
     },
     {
       "slug": "northwind-trade",
