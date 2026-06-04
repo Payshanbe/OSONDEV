@@ -76,6 +76,11 @@ export interface SiteContent {
   sections: SiteSections;
 }
 
+export interface WorkMediaItem {
+  url: string;
+  type: "image" | "video";
+}
+
 export interface WorkProject {
   slug: string;
   title: string;
@@ -87,9 +92,11 @@ export interface WorkProject {
   glow: string;
   /** Extended case copy for `/work/[slug]` */
   body?: string;
-  /** Public image URL — Vercel Blob or external CDN */
+  /** Gallery — images and videos (Vercel Blob URLs) */
+  gallery?: WorkMediaItem[];
+  /** @deprecated Use gallery — kept for older JSON */
   coverImage?: string;
-  /** Short loop/preview video — Vercel Blob (MP4/WebM/MOV) */
+  /** @deprecated Use gallery */
   coverVideo?: string;
 }
 

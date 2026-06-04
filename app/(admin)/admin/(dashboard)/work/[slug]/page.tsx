@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { saveWorkProjectAction } from "@/app/(admin)/admin/actions";
 import { AdminForm } from "@/components/admin/admin-form";
 import { DeleteProjectButton } from "@/components/admin/delete-project-button";
-import { CoverMediaField } from "@/components/admin/cover-media-field";
+import { GalleryMediaField } from "@/components/admin/gallery-media-field";
 import { FormField } from "@/components/admin/form-field";
 import { isBlobStorageEnabled } from "@/lib/blob";
 import { AdminLocaleTabs } from "@/components/admin/locale-tabs";
@@ -34,8 +34,7 @@ export default async function AdminWorkEditPage({ params, searchParams }: Props)
         accent: "hsl(240 25% 12%)",
         glow: "hsl(280 65% 55% / 0.25)",
         body: "",
-        coverImage: "",
-        coverVideo: "",
+        gallery: [],
       }
     : await getWorkProject(slug, locale);
 
@@ -78,11 +77,7 @@ export default async function AdminWorkEditPage({ params, searchParams }: Props)
             <FormField label="Category" name="category" defaultValue={p.category} />
             <FormField label="Year" name="year" defaultValue={p.year} />
           </div>
-          <CoverMediaField
-            initialImage={p.coverImage}
-            initialVideo={p.coverVideo}
-            slug={isNew ? "" : p.slug}
-          />
+          <GalleryMediaField project={p} slug={isNew ? "" : p.slug} />
 
           <FormField
             label="Short description"

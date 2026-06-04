@@ -20,6 +20,7 @@ export type {
   MarqueeItem,
   CtaContent,
   WorkProject,
+  WorkMediaItem,
   WorkContent,
 } from "@/lib/content/types";
 

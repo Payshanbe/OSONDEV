@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { normalizeWorkProject } from "@/lib/content/normalize-work-project";
+import { WorkProjectGallery } from "@/components/work-project-media";
 import { WorkProjectCover } from "@/components/work-project-cover";
 import { Button } from "@/components/ui/button";
 import { getWorkProject, getWorkProjects } from "@/lib/content";
@@ -78,6 +80,8 @@ export default async function WorkCasePage({ params }: Props) {
   }
 
   const body = project.body ?? t.bodyFallback;
+  const normalized = normalizeWorkProject(project);
+  const gallery = normalized.gallery ?? [];
 
   return (
     <article className="relative border-t border-border/40">
@@ -89,14 +93,11 @@ export default async function WorkCasePage({ params }: Props) {
           {project.title}
         </h1>
         <div className="mt-10">
-          <WorkProjectCover
-            coverImage={project.coverImage}
-            coverVideo={project.coverVideo}
-            accent={project.accent}
-            glow={project.glow}
-            title={project.title}
-            variant="hero"
-          />
+          {gallery.length > 1 ? (
+            <WorkProjectGallery items={gallery} title={project.title} variant="grid" />
+          ) : (
+            <WorkProjectCover project={project} variant="hero" />
+          )}
         </div>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
           {project.description}

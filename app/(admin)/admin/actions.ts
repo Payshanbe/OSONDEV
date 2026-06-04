@@ -140,6 +140,17 @@ export async function saveSiteSettingsAction(
   }
 }
 
+function parseGalleryRows(formData: FormData): { url: string; type: "image" | "video" }[] {
+  const urls = formData.getAll("galleryUrl").map(String);
+  const types = formData.getAll("galleryType").map(String);
+  return urls
+    .map((url, i) => ({
+      url: url.trim(),
+      type: types[i] === "video" ? ("video" as const) : ("image" as const),
+    }))
+    .filter((item) => item.url);
+}
+
 function parseSocialRows(formData: FormData): { label: string; href: string }[] {
   const labels = formData.getAll("socialLabel").map(String);
   const hrefs = formData.getAll("socialHref").map(String);
@@ -281,8 +292,10 @@ export async function saveWorkProjectAction(
       accent: String(formData.get("accent") ?? ""),
       glow: String(formData.get("glow") ?? ""),
       body: String(formData.get("body") ?? ""),
-      coverImage: String(formData.get("coverImage") ?? "").trim() || undefined,
-      coverVideo: String(formData.get("coverVideo") ?? "").trim() || undefined,
+      gallery: (() => {
+        const gallery = parseGalleryRows(formData);
+        return gallery.length ? gallery : undefined;
+      })(),
     };
 
     const work = await readWorkContent(locale);

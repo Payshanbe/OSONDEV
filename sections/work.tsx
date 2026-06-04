@@ -60,18 +60,8 @@ export function WorkSection({ projects }: { projects: WorkProject[] }) {
   );
 }
 
-function ProjectCard({
-  slug,
-  title,
-  category,
-  year,
-  description,
-  stack,
-  accent,
-  glow,
-  coverImage,
-  coverVideo,
-}: WorkProject) {
+function ProjectCard(project: WorkProject) {
+  const { slug, title, category, year, description, stack, glow } = project;
   const locale = useLocale();
 
   return (
@@ -98,14 +88,7 @@ function ProjectCard({
           }}
         />
 
-        <WorkProjectCover
-          coverImage={coverImage}
-          coverVideo={coverVideo}
-          accent={accent}
-          glow={glow}
-          title={title}
-          variant="card"
-        />
+        <WorkProjectCover project={project} variant="card" />
 
         <div className="relative flex flex-1 flex-col gap-4 p-8 sm:p-9">
           <div className="flex items-center justify-between gap-4 border-b border-border/40 pb-5">

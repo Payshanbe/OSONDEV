@@ -4,7 +4,8 @@ import path from "node:path";
 
 import { DEFAULT_SITE_CONTENT, DEFAULT_WORK_CONTENT } from "@/lib/content/defaults";
 import { DEFAULT_SITE_CONTENT_RU, DEFAULT_WORK_CONTENT_RU } from "@/lib/content/defaults-ru";
-import type { SiteContent, SocialLink, WorkContent } from "@/lib/content/types";
+import { normalizeWorkProject } from "@/lib/content/normalize-work-project";
+import type { SiteContent, SocialLink, WorkContent, WorkProject } from "@/lib/content/types";
 import { normalizeSocialLinks } from "@/lib/content/normalize-social";
 import { defaultLocale, isValidLocale, type Locale } from "@/lib/i18n/config";
 import { isGitHubStorageEnabled, readGitHubFile, writeGitHubFile } from "@/lib/content/github";
@@ -67,10 +68,16 @@ function mergeSiteContent(parsed: Partial<SiteContent>, locale: Locale): SiteCon
   };
 }
 
+function normalizeWorkProjects(projects: WorkProject[]): WorkProject[] {
+  return projects.map(normalizeWorkProject);
+}
+
 function mergeWorkContent(parsed: Partial<WorkContent>, locale: Locale): WorkContent {
   const base = defaultWorkFor(locale);
   return {
-    projects: parsed.projects?.length ? parsed.projects : base.projects,
+    projects: parsed.projects?.length
+      ? normalizeWorkProjects(parsed.projects)
+      : base.projects,
   };
 }
 

@@ -1,14 +1,11 @@
-import Image from "next/image";
-
+import { getPrimaryMedia, normalizeWorkProject } from "@/lib/content/normalize-work-project";
+import type { WorkProject } from "@/lib/content/types";
 import { cn } from "@/lib/utils";
 
+import { WorkMediaItemView } from "@/components/work-project-media";
+
 interface WorkProjectCoverProps {
-  coverImage?: string;
-  coverVideo?: string;
-  accent: string;
-  glow: string;
-  title: string;
-  /** Card uses hover mock; case page is static */
+  project: Pick<WorkProject, "gallery" | "coverImage" | "coverVideo" | "accent" | "glow" | "title">;
   variant?: "card" | "hero";
 }
 
@@ -47,39 +44,17 @@ function CoverFrame({
   );
 }
 
-export function WorkProjectCover({
-  coverImage,
-  coverVideo,
-  accent,
-  glow,
-  title,
-  variant = "card",
-}: WorkProjectCoverProps) {
-  if (coverVideo) {
-    return (
-      <CoverFrame variant={variant} glow={glow}>
-        <video
-          src={coverVideo}
-          className="absolute inset-0 h-full w-full object-cover"
-          muted
-          loop
-          playsInline
-          autoPlay
-          aria-label={title}
-        />
-      </CoverFrame>
-    );
-  }
+export function WorkProjectCover({ project, variant = "card" }: WorkProjectCoverProps) {
+  const normalized = normalizeWorkProject(project as WorkProject);
+  const primary = getPrimaryMedia(normalized);
+  const { accent, glow, title } = project;
 
-  if (coverImage) {
+  if (primary) {
     return (
       <CoverFrame variant={variant} glow={glow}>
-        <Image
-          src={coverImage}
-          alt={title}
-          fill
-          className="object-cover"
-          sizes={variant === "card" ? "(max-width: 1024px) 100vw, 50vw" : "100vw"}
+        <WorkMediaItemView
+          item={primary}
+          title={title}
           priority={variant === "hero"}
         />
       </CoverFrame>
