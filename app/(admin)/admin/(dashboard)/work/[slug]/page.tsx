@@ -4,7 +4,9 @@ import { notFound } from "next/navigation";
 import { saveWorkProjectAction } from "@/app/(admin)/admin/actions";
 import { AdminForm } from "@/components/admin/admin-form";
 import { DeleteProjectButton } from "@/components/admin/delete-project-button";
+import { CoverImageField } from "@/components/admin/cover-image-field";
 import { FormField } from "@/components/admin/form-field";
+import { isBlobStorageEnabled } from "@/lib/blob";
 import { AdminLocaleTabs } from "@/components/admin/locale-tabs";
 import { getWorkProject } from "@/lib/content";
 import type { WorkProject } from "@/lib/content/types";
@@ -32,6 +34,7 @@ export default async function AdminWorkEditPage({ params, searchParams }: Props)
         accent: "hsl(240 25% 12%)",
         glow: "hsl(280 65% 55% / 0.25)",
         body: "",
+        coverImage: "",
       }
     : await getWorkProject(slug, locale);
 
@@ -53,19 +56,29 @@ export default async function AdminWorkEditPage({ params, searchParams }: Props)
 
       <AdminLocaleTabs basePath={`/admin/work/${slug}`} activeLocale={locale} />
 
+      {!isBlobStorageEnabled() ? (
+        <p className="mt-6 rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-100/90">
+          Cover uploads need{" "}
+          <code className="text-amber-50">BLOB_READ_WRITE_TOKEN</code> — create a Blob store in
+          Vercel → Storage, connect to this project, then redeploy.
+        </p>
+      ) : null}
+
       <div className="mt-10">
         <AdminForm action={saveWorkProjectAction} locale={locale}>
           <FormField
             label="Slug (URL)"
             name="slug"
             defaultValue={p.slug}
-            hint="Lowercase, hyphens — e.g. atlas-metrics"
+            hint="Lowercase, hyphens — e.g. atlas-metrics. Set before uploading a cover."
           />
           <div className="grid gap-5 sm:grid-cols-2">
             <FormField label="Title" name="title" defaultValue={p.title} />
             <FormField label="Category" name="category" defaultValue={p.category} />
             <FormField label="Year" name="year" defaultValue={p.year} />
           </div>
+          <CoverImageField initialUrl={p.coverImage} slug={isNew ? "" : p.slug} />
+
           <FormField
             label="Short description"
             name="description"

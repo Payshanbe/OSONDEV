@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 
 import { Reveal, RevealGroup, RevealItem } from "@/components/reveal";
+import { WorkProjectCover } from "@/components/work-project-cover";
 import { useLocale, useSiteContent } from "@/components/site-content-provider";
 import { workPath } from "@/lib/i18n/paths";
 import type { WorkProject } from "@/lib/content/types";
@@ -68,6 +69,7 @@ function ProjectCard({
   stack,
   accent,
   glow,
+  coverImage,
 }: WorkProject) {
   const locale = useLocale();
 
@@ -95,45 +97,13 @@ function ProjectCard({
           }}
         />
 
-        <div className="relative overflow-hidden rounded-t-[15px]">
-          <div
-            aria-hidden
-            className={cn(
-              "relative aspect-[16/10] w-full bg-gradient-to-br from-muted/90 to-muted/40",
-              "before:absolute before:inset-0 before:bg-gradient-to-t before:from-background/80 before:via-transparent before:to-transparent",
-            )}
-            style={{ backgroundColor: accent }}
-          >
-            <motion.div
-              className="absolute inset-[12%] rounded-lg border border-white/10 bg-background/45 shadow-2xl backdrop-blur-sm"
-              whileHover={{ scale: 1.03 }}
-              transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <div className="flex h-full flex-col p-4 sm:p-5">
-                <div className="flex gap-1.5 pb-4">
-                  <span className="h-2 w-2 rounded-full bg-white/25" />
-                  <span className="h-2 w-2 rounded-full bg-white/15" />
-                  <span className="h-2 w-2 rounded-full bg-white/15" />
-                </div>
-                <div className="flex flex-1 gap-3">
-                  <div className="w-2/5 space-y-2 rounded-md border border-white/10 bg-white/[0.04] p-2">
-                    <div className="h-1 rounded bg-white/20" />
-                    <div className="h-1 w-[85%] rounded bg-white/10" />
-                    <div className="h-1 w-[66%] rounded bg-white/10" />
-                    <div className="mt-auto h-8 rounded bg-gradient-to-r from-white/18 to-transparent" />
-                  </div>
-                  <div className="flex flex-1 flex-col gap-2">
-                    <div className="h-24 rounded-lg border border-white/10 bg-gradient-to-br from-white/[0.07] to-transparent" />
-                    <div className="grid flex-1 grid-cols-2 gap-2">
-                      <div className="rounded-md border border-white/10 bg-white/[0.04]" />
-                      <div className="rounded-md border border-white/10 bg-white/[0.04]" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
+        <WorkProjectCover
+          coverImage={coverImage}
+          accent={accent}
+          glow={glow}
+          title={title}
+          variant="card"
+        />
 
         <div className="relative flex flex-1 flex-col gap-4 p-8 sm:p-9">
           <div className="flex items-center justify-between gap-4 border-b border-border/40 pb-5">

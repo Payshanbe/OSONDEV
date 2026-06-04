@@ -281,6 +281,7 @@ export async function saveWorkProjectAction(
       accent: String(formData.get("accent") ?? ""),
       glow: String(formData.get("glow") ?? ""),
       body: String(formData.get("body") ?? ""),
+      coverImage: String(formData.get("coverImage") ?? "").trim() || undefined,
     };
 
     const work = await readWorkContent(locale);

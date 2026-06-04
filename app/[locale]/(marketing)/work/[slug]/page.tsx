@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { WorkProjectCover } from "@/components/work-project-cover";
 import { Button } from "@/components/ui/button";
 import { getWorkProject, getWorkProjects } from "@/lib/content";
 import { buildMetadata } from "@/lib/metadata";
@@ -87,6 +88,15 @@ export default async function WorkCasePage({ params }: Props) {
         <h1 className="mt-4 text-display-xl font-semibold tracking-tight">
           {project.title}
         </h1>
+        <div className="mt-10">
+          <WorkProjectCover
+            coverImage={project.coverImage}
+            accent={project.accent}
+            glow={project.glow}
+            title={project.title}
+            variant="hero"
+          />
+        </div>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
           {project.description}
         </p>
