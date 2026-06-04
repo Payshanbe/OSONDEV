@@ -69,5 +69,10 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin", "/admin/:path*", "/((?!_next|api|icon\\.svg|favicon\\.ico|.*\\..*).*)"],
+  matcher: [
+    "/admin",
+    "/admin/:path*",
+    // Skip locale redirect for static assets (files with extensions + Next metadata routes).
+    "/((?!_next|api|favicon\\.ico|icon\\.png|apple-icon\\.png|icon-512\\.png|logo-oson\\.png|og\\.png|robots\\.txt|sitemap\\.xml|.*\\..*).*)",
+  ],
 };

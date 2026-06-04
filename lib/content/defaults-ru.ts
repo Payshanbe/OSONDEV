@@ -2,9 +2,9 @@ import type { SiteContent, WorkContent } from "@/lib/content/types";
 
 export const DEFAULT_SITE_CONTENT_RU: SiteContent = {
   site: {
-    name: "OSON",
+    name: "OSONDEV",
     shortName: "OSON",
-    tagline: "Студия цифрового дизайна и разработки.",
+    tagline: "Цифровая студия",
     description:
       "Независимая студия: проектируем и создаём цифровые продукты для амбициозных команд.",
     url: "https://sitan.studio",

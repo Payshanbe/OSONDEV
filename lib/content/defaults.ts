@@ -4,7 +4,7 @@ export const DEFAULT_SITE_CONTENT: SiteContent = {
   site: {
     name: "OSON",
     shortName: "OSON",
-    tagline: "Dev for design-led digital craft.",
+    tagline: "Digital studio",
     description:
       "Sitan is an independent studio designing and engineering refined digital products for ambitious teams.",
     url: "https://sitan.studio",

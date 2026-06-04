@@ -29,7 +29,7 @@ export function buildMetadata({
   const site = getSiteConfig(locale);
   const resolvedDescription = description ?? site.description;
   const resolvedImage = image ?? site.ogImage;
-  const resolvedTitle = title
+  const pageTitle = title
     ? `${title} — ${site.name}`
     : `${site.name} — ${site.tagline}`;
 
@@ -44,10 +44,8 @@ export function buildMetadata({
 
   return {
     metadataBase: new URL(site.url),
-    title: {
-      default: resolvedTitle,
-      template: `%s — ${site.name}`,
-    },
+    // `absolute` prevents parent/layout title templates from appending site.name again.
+    title: { absolute: pageTitle },
     description: resolvedDescription,
     keywords: [...site.keywords],
     authors: site.authors.map((a) => ({ name: a.name, url: a.url })),
@@ -62,20 +60,20 @@ export function buildMetadata({
       locale: ogLocale[locale],
       url,
       siteName: site.name,
-      title: resolvedTitle,
+      title: pageTitle,
       description: resolvedDescription,
       images: [
         {
           url: resolvedImage,
           width: 1200,
           height: 630,
-          alt: resolvedTitle,
+          alt: pageTitle,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: resolvedTitle,
+      title: pageTitle,
       description: resolvedDescription,
       images: [resolvedImage],
       creator: "@sitanstudio",
@@ -94,7 +92,11 @@ export function buildMetadata({
           },
         },
     icons: {
-      icon: [{ url: "/favicon.ico" }],
+      icon: [
+        { url: "/favicon.ico", sizes: "48x48" },
+        { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+      ],
+      apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
       shortcut: ["/favicon.ico"],
     },
     formatDetection: {

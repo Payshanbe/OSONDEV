@@ -1,16 +1,15 @@
-import type { Metadata, Viewport } from "next";
+import type { Viewport } from "next";
 
 import { ThemeProvider } from "@/components/theme-provider";
 import { MotionProvider } from "@/components/motion-provider";
 import { NoiseOverlay } from "@/components/noise-overlay";
 import { SiteBackground } from "@/components/site-background";
 import { fontBrand, fontMono, fontSans, fontSerif } from "@/lib/fonts";
-import { buildMetadata } from "@/lib/metadata";
 import { cn } from "@/lib/utils";
 
 import "./globals.css";
 
-export const metadata: Metadata = buildMetadata();
+/** Title/metadata live on locale pages only — root metadata caused duplicate titles in SERP. */
 
 export const viewport: Viewport = {
   themeColor: [
