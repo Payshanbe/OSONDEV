@@ -75,6 +75,31 @@
       "accent": "hsl(240 25% 12%)",
       "glow": "hsl(280 65% 55% / 0.25)",
       "body": "Extended case narratives, outcome metrics, and process notes are prepared for qualified conversations. Reach out below if you'd like this study in full — or browse the homepage grid while we finalize the archive."
+    },
+    {
+      "slug": "taom-saas",
+      "title": "Taom",
+      "category": "Commerce",
+      "year": "2024",
+      "description": "Автоматизируйте заказы, управление персоналом, складской учет и аналитику с помощью современной SaaS-платформы Taom.",
+      "stack": [
+        "Next.js",
+        "React",
+        "Node"
+      ],
+      "accent": "hsl(263 38% 16%)",
+      "glow": "hsl(263 70% 50% / 0.28)",
+      "body": "Taom — современная SaaS-платформа для автоматизации и управления ресторанным бизнесом. Управляйте заказами, столиками, персоналом, складом и аналитикой в одном удобном интерфейсе. Получайте данные в реальном времени, повышайте эффективность работы и улучшайте качество обслуживания гостей. на английском тоже",
+      "gallery": [
+        {
+          "url": "https://tilqnomrkwqaon02.public.blob.vercel-storage.com/work/northwind-trade/1780578939721-vecteezy_tablet-screen-mockup-for-design-presentation_80421922--1--5AtKHKKI3IGKLBhhGhMSQ3kBpURxcj.png",
+          "type": "image"
+        },
+        {
+          "url": "https://tilqnomrkwqaon02.public.blob.vercel-storage.com/work/northwind-trade/1780578975310-vecteezy_tablet-screen-mockup-with-hand_80421918--1--Vyj0zmo5G4znJ365Jw1eeYEIfLEsxK.png",
+          "type": "image"
+        }
+      ]
     }
   ]
 }
