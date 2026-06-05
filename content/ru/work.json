@@ -1,9 +1,9 @@
 {
   "projects": [
     {
-      "slug": "atlas-metrics",
+      "slug": "motion-design",
       "title": "MotionDesign",
-      "category": "OSONDEV",
+      "category": "DESIGN",
       "year": "2026",
       "description": "Мы создаем motion-дизайн, который не просто выглядит красиво, а помогает доносить идеи, усиливать бренд и привлекать внимание аудитории.",
       "stack": [
