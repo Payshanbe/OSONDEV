@@ -22,7 +22,7 @@ import {
 } from "@/lib/content/storage";
 import { defaultLocale, isValidLocale, locales, type Locale } from "@/lib/i18n/config";
 
-export type ActionState = { ok: boolean; message: string };
+export type ActionState = { ok: boolean; message: string; redirectTo?: string };
 
 /** Login form state — `redirectTo` set after a successful sign-in. */
 export type LoginState = ActionState & { redirectTo?: string };
@@ -269,6 +269,42 @@ function parseMarqueeRows(formData: FormData) {
     .filter((item) => item.label);
 }
 
+function upsertWorkProject(
+  projects: WorkProject[],
+  project: WorkProject,
+  originalSlug?: string,
+): WorkProject[] {
+  const lookupSlug = (originalSlug?.trim() || project.slug).trim();
+  const next = [...projects];
+  const index = next.findIndex((p) => p.slug === lookupSlug);
+
+  if (index >= 0) {
+    next[index] = project;
+    if (lookupSlug !== project.slug) {
+      return next.filter((p, i) => i === index || p.slug !== project.slug);
+    }
+    return next;
+  }
+
+  const byNewSlug = next.findIndex((p) => p.slug === project.slug);
+  if (byNewSlug >= 0) {
+    next[byNewSlug] = project;
+    return next;
+  }
+
+  return [...next, project];
+}
+
+/** Keep one entry per slug — last write wins if duplicates slipped in. */
+function dedupeProjectsBySlug(projects: WorkProject[]): WorkProject[] {
+  const bySlug = new Map<string, WorkProject>();
+  for (const project of projects) {
+    const key = project.slug.trim();
+    if (key) bySlug.set(key, project);
+  }
+  return [...bySlug.values()];
+}
+
 export async function saveWorkProjectAction(
   _prev: ActionState | null,
   formData: FormData,
@@ -276,6 +312,7 @@ export async function saveWorkProjectAction(
   try {
     await requireAdmin();
     const locale = parseLocale(formData);
+    const originalSlug = String(formData.get("originalSlug") ?? "").trim();
     const slug = String(formData.get("slug") ?? "").trim();
     if (!slug) return FAIL("Slug is required.");
 
@@ -299,18 +336,22 @@ export async function saveWorkProjectAction(
     };
 
     const work = await readWorkContent(locale);
-    const index = work.projects.findIndex((p) => p.slug === slug);
-    const projects = [...work.projects];
-    if (index >= 0) {
-      projects[index] = project;
-    } else {
-      projects.push(project);
-    }
+    const projects = dedupeProjectsBySlug(
+      upsertWorkProject(work.projects, project, originalSlug || undefined),
+    );
 
     await writeWorkContent({ projects }, locale);
     revalidateMarketing();
     revalidateWorkSlug(slug);
-    return saveOk();
+    if (originalSlug && originalSlug !== slug) {
+      revalidateWorkSlug(originalSlug);
+    }
+
+    const redirectTo = originalSlug
+      ? undefined
+      : `/admin/work/${encodeURIComponent(slug)}?locale=${locale}`;
+
+    return { ...saveOk(), redirectTo };
   } catch (e) {
     return FAIL(e instanceof Error ? e.message : "Could not save project.");
   }

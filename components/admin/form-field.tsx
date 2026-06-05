@@ -9,6 +9,7 @@ interface FormFieldProps {
   multiline?: boolean;
   rows?: number;
   className?: string;
+  readOnly?: boolean;
 }
 
 export function FormField({
@@ -20,6 +21,7 @@ export function FormField({
   multiline,
   rows = 4,
   className,
+  readOnly,
 }: FormFieldProps) {
   const inputClass = cn(
     "mt-1.5 w-full rounded-lg border border-border/70 bg-background/80 px-3 py-2 text-sm text-foreground",
@@ -44,7 +46,8 @@ export function FormField({
           type={type}
           name={name}
           defaultValue={defaultValue}
-          className={inputClass}
+          readOnly={readOnly}
+          className={cn(inputClass, readOnly && "cursor-not-allowed opacity-70")}
         />
       )}
       {hint ? (

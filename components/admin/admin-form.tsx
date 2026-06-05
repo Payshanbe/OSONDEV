@@ -1,7 +1,8 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 import { useFormStatus } from "react-dom";
+import { useRouter } from "next/navigation";
 
 import type { ActionState } from "@/app/(admin)/admin/actions";
 import { FormStatus, SubmitButton } from "@/components/admin/form-status";
@@ -32,7 +33,14 @@ export function AdminForm({
   children,
   submitLabel = "Save changes",
 }: AdminFormProps) {
+  const router = useRouter();
   const [state, formAction] = useActionState(action, initial);
+
+  useEffect(() => {
+    if (state.ok && state.redirectTo) {
+      router.replace(state.redirectTo);
+    }
+  }, [state, router]);
 
   return (
     <form action={formAction} className="space-y-8">

@@ -66,11 +66,17 @@ export default async function AdminWorkEditPage({ params, searchParams }: Props)
 
       <div className="mt-10">
         <AdminForm action={saveWorkProjectAction} locale={locale}>
+          {!isNew ? <input type="hidden" name="originalSlug" value={slug} /> : null}
           <FormField
             label="Slug (URL)"
             name="slug"
             defaultValue={p.slug}
-            hint="Lowercase, hyphens — e.g. atlas-metrics. Set before uploading a cover."
+            readOnly={!isNew}
+            hint={
+              isNew
+                ? "Lowercase, hyphens — e.g. atlas-metrics. Set before uploading a cover."
+                : "Slug is fixed after creation. Create a new project to use a different URL."
+            }
           />
           <div className="grid gap-5 sm:grid-cols-2">
             <FormField label="Title" name="title" defaultValue={p.title} />
