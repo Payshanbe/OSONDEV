@@ -23,21 +23,6 @@
       ]
     },
     {
-      "slug": "helios-studios",
-      "title": "Helios",
-      "category": "Editorial",
-      "year": "2024",
-      "description": "Portfolio and archive for an independent filmmaker — restrained typography and image-led rhythm.",
-      "stack": [
-        "Framer Motion",
-        "MDX",
-        "Vercel"
-      ],
-      "accent": "hsl(200 38% 14%)",
-      "glow": "hsl(199 88% 52% / 0.22)",
-      "body": "Extended case narratives, outcome metrics, and process notes are prepared for qualified conversations. Reach out below if you'd like this study in full — or browse the homepage grid while we finalize the archive."
-    },
-    {
       "slug": "circuit-ai",
       "title": "Circuit",
       "category": "Labs",
