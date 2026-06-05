@@ -1,9 +1,9 @@
 {
   "projects": [
     {
-      "slug": "atlas-metrics",
+      "slug": "motion-design",
       "title": "Motion Design",
-      "category": "OSONDEV",
+      "category": "DESIGN",
       "year": "2026",
       "description": "We create motion design that does more than look visually appealing — it helps communicate ideas, strengthen brand identity, and capture audience attention.",
       "stack": [
@@ -14,7 +14,6 @@
       "accent": "hsl(220 42% 18%)",
       "glow": "hsl(220 76% 58% / 0.35)",
       "body": "Our approach combines visual aesthetics, thoughtful animation, and modern technologies. We carefully study the project's goals, target audience, and brand identity to ensure that every animation serves a clear purpose and delivers meaningful results.",
-      "coverVideo": "https://tilqnomrkwqaon02.public.blob.vercel-storage.com/work/atlas-metrics/1780573685464-Algoryexplainersnippet1-ezgif.com-gif-to-mp4-converter-L27Em03D70WR1hJWAHZW2if6n1dpAd.mp4",
       "gallery": [
         {
           "url": "https://tilqnomrkwqaon02.public.blob.vercel-storage.com/work/atlas-metrics/1780573685464-Algoryexplainersnippet1-ezgif.com-gif-to-mp4-converter-L27Em03D70WR1hJWAHZW2if6n1dpAd.mp4",
