@@ -14,6 +14,10 @@ interface LogoProps {
   size?: "md" | "lg";
 }
 
+/** Intrinsic size matches `public/logo-oson.png` (612×408) so Next/Image keeps correct proportions. */
+const LOGO_WIDTH = 612;
+const LOGO_HEIGHT = 408;
+
 const imageSizeClass = {
   md: "h-11 w-auto sm:h-12",
   lg: "h-[9rem] w-auto",
@@ -37,8 +41,8 @@ export function Logo({ className, href = "/", size = "md" }: LogoProps) {
       <Image
         src="/logo-oson.png"
         alt={`${site.name} dev`}
-        width={size === "lg" ? 360 : 240}
-        height={size === "lg" ? 130 : 86}
+        width={LOGO_WIDTH}
+        height={LOGO_HEIGHT}
         className={cn(
           imageSizeClass[size],
           "opacity-90 transition-opacity duration-300 group-hover:opacity-100",
