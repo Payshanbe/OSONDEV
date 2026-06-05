@@ -1,5 +1,5 @@
 /**
- * Favicon generator from public/logo-oson.png (square OD mark).
+ * Favicon generator from public/favicon-source.jpg (tab icon only).
  * Run: node scripts/generate-favicons.mjs
  */
 import { readFile, writeFile } from "node:fs/promises";
@@ -8,17 +8,11 @@ import { fileURLToPath } from "node:url";
 import sharp from "sharp";
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
-const src = path.join(root, "public", "logo-oson.png");
-
-const BG = { r: 9, g: 9, b: 11, alpha: 1 };
+const src = path.join(root, "public", "favicon-source.jpg");
 
 async function squareIcon(buffer, size) {
   return sharp(buffer)
-    .resize(size, size, {
-      fit: "contain",
-      position: "centre",
-      background: BG,
-    })
+    .resize(size, size, { fit: "cover" })
     .png()
     .toBuffer();
 }
