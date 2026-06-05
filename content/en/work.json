@@ -22,11 +22,11 @@
       ]
     },
     {
-      "slug": "circuit-ai",
-      "title": "Circuit",
-      "category": "Labs",
+      "slug": "web-dev",
+      "title": "Web Development",
+      "category": "Development",
       "year": "2026",
-      "description": "Workspace for prompting, reviewing, and shipping AI-assisted workflows inside an existing ops stack.",
+      "description": "Digital Solutions for Modern Businesses",
       "stack": [
         "React",
         "SSE",
@@ -34,7 +34,7 @@
       ],
       "accent": "hsl(240 25% 12%)",
       "glow": "hsl(280 65% 55% / 0.25)",
-      "body": "Extended case narratives, outcome metrics, and process notes are prepared for qualified conversations. Reach out below if you'd like this study in full — or browse the homepage grid while we finalize the archive."
+      "body": "We create everything from corporate websites to complex web platforms, combining thoughtful design, high performance, and exceptional user experience. Every project is tailored to your business goals and built to support long-term growth and scalability"
     },
     {
       "slug": "taom-saas",
