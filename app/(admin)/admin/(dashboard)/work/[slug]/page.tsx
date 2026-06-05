@@ -71,12 +71,7 @@ export default async function AdminWorkEditPage({ params, searchParams }: Props)
             label="Slug (URL)"
             name="slug"
             defaultValue={p.slug}
-            readOnly={!isNew}
-            hint={
-              isNew
-                ? "Lowercase, hyphens — e.g. atlas-metrics. Set before uploading a cover."
-                : "Slug is fixed after creation. Create a new project to use a different URL."
-            }
+            hint="Lowercase, hyphens — e.g. atlas-metrics. Changing slug renames the project URL."
           />
           <div className="grid gap-5 sm:grid-cols-2">
             <FormField label="Title" name="title" defaultValue={p.title} />

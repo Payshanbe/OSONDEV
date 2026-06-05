@@ -336,6 +336,14 @@ export async function saveWorkProjectAction(
     };
 
     const work = await readWorkContent(locale);
+    const lookupSlug = originalSlug || slug;
+    const slugTaken = work.projects.some(
+      (p) => p.slug === slug && p.slug !== lookupSlug,
+    );
+    if (slugTaken) {
+      return FAIL(`Slug "${slug}" is already used by another project.`);
+    }
+
     const projects = dedupeProjectsBySlug(
       upsertWorkProject(work.projects, project, originalSlug || undefined),
     );
@@ -347,9 +355,10 @@ export async function saveWorkProjectAction(
       revalidateWorkSlug(originalSlug);
     }
 
-    const redirectTo = originalSlug
-      ? undefined
-      : `/admin/work/${encodeURIComponent(slug)}?locale=${locale}`;
+    const redirectTo =
+      !originalSlug || originalSlug !== slug
+        ? `/admin/work/${encodeURIComponent(slug)}?locale=${locale}`
+        : undefined;
 
     return { ...saveOk(), redirectTo };
   } catch (e) {
