@@ -22,31 +22,6 @@
       ]
     },
     {
-      "slug": "northwind-trade",
-      "title": "Northwind",
-      "category": "Commerce",
-      "year": "2024",
-      "description": "Headless storefront and fulfilment dashboards for a midsize apparel brand migrating off legacy infra.",
-      "stack": [
-        "Next.js",
-        "React",
-        "Node"
-      ],
-      "accent": "hsl(263 38% 16%)",
-      "glow": "hsl(263 70% 50% / 0.28)",
-      "body": "Extended case narratives, outcome metrics, and process notes are prepared for qualified conversations. Reach out below if you'd like this study in full — or browse the homepage grid while we finalize the archive.",
-      "gallery": [
-        {
-          "url": "https://tilqnomrkwqaon02.public.blob.vercel-storage.com/work/northwind-trade/1780578939721-vecteezy_tablet-screen-mockup-for-design-presentation_80421922--1--5AtKHKKI3IGKLBhhGhMSQ3kBpURxcj.png",
-          "type": "image"
-        },
-        {
-          "url": "https://tilqnomrkwqaon02.public.blob.vercel-storage.com/work/northwind-trade/1780578975310-vecteezy_tablet-screen-mockup-with-hand_80421918--1--Vyj0zmo5G4znJ365Jw1eeYEIfLEsxK.png",
-          "type": "image"
-        }
-      ]
-    },
-    {
       "slug": "helios-studios",
       "title": "Helios",
       "category": "Editorial",
