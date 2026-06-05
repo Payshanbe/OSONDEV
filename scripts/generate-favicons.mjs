@@ -1,5 +1,5 @@
 /**
- * One-off favicon generator from public/logo-oson.png.
+ * Favicon generator from public/logo-oson.png (square OD mark).
  * Run: node scripts/generate-favicons.mjs
  */
 import { readFile, writeFile } from "node:fs/promises";
@@ -12,13 +12,8 @@ const src = path.join(root, "public", "logo-oson.png");
 
 const BG = { r: 9, g: 9, b: 11, alpha: 1 };
 
-/** Crop OD monogram (strip STUDIO wordmark), then fit into a square icon. */
-async function squareMonogram(buffer, size) {
-  const meta = await sharp(buffer).metadata();
-  const cropH = Math.round(meta.height * 0.52);
-
+async function squareIcon(buffer, size) {
   return sharp(buffer)
-    .extract({ left: 0, top: 0, width: meta.width, height: cropH })
     .resize(size, size, {
       fit: "contain",
       position: "centre",
@@ -30,10 +25,10 @@ async function squareMonogram(buffer, size) {
 
 const srcBuf = await readFile(src);
 
-const icon32 = await squareMonogram(srcBuf, 32);
-const icon180 = await squareMonogram(srcBuf, 180);
-const icon512 = await squareMonogram(srcBuf, 512);
-const fav48 = await squareMonogram(srcBuf, 48);
+const icon32 = await squareIcon(srcBuf, 32);
+const icon180 = await squareIcon(srcBuf, 180);
+const icon512 = await squareIcon(srcBuf, 512);
+const fav48 = await squareIcon(srcBuf, 48);
 
 await writeFile(path.join(root, "app", "icon.png"), icon32);
 await writeFile(path.join(root, "app", "apple-icon.png"), icon180);

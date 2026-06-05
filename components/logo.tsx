@@ -10,24 +10,31 @@ import { homePath, localizeHref } from "@/lib/i18n/paths";
 interface LogoProps {
   className?: string;
   href?: string;
-  /** Header uses `md`; footer can use `lg` for a larger lockup */
+  /** Header uses `md`; footer uses `lg` with the full wordmark lockup */
   size?: "md" | "lg";
 }
 
-/** Intrinsic size matches `public/logo-oson.png` (612×408) so Next/Image keeps correct proportions. */
-const LOGO_WIDTH = 612;
-const LOGO_HEIGHT = 408;
-
-const imageSizeClass = {
-  md: "h-11 w-auto sm:h-12",
-  lg: "h-[9rem] w-auto",
+const logoConfig = {
+  md: {
+    src: "/logo-oson.png",
+    width: 606,
+    height: 322,
+    className: "h-[1.8rem] w-auto",
+  },
+  lg: {
+    src: "/logo-oson-wordmark.png",
+    width: 612,
+    height: 408,
+    className: "h-[9rem] w-auto",
+  },
 } as const;
 
-/** OSON brand lockup — full wordmark image (white on dark UI) */
+/** OSON brand — OD mark in nav, full wordmark in footer */
 export function Logo({ className, href = "/", size = "md" }: LogoProps) {
   const { site } = useSiteContent();
   const locale = useLocale();
   const resolvedHref = href === "/" ? homePath(locale) : localizeHref(href, locale);
+  const config = logoConfig[size];
 
   return (
     <Link
@@ -39,15 +46,15 @@ export function Logo({ className, href = "/", size = "md" }: LogoProps) {
       )}
     >
       <Image
-        src="/logo-oson.png"
+        src={config.src}
         alt={`${site.name} dev`}
-        width={LOGO_WIDTH}
-        height={LOGO_HEIGHT}
+        width={config.width}
+        height={config.height}
         className={cn(
-          imageSizeClass[size],
+          config.className,
           "opacity-90 transition-opacity duration-300 group-hover:opacity-100",
         )}
-        priority
+        priority={size === "md"}
       />
     </Link>
   );
