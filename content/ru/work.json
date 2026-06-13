@@ -43,9 +43,9 @@
       "year": "2025",
       "description": "Создаём интерфейсы, которые объединяют эстетику, удобство и бизнес-цели",
       "stack": [
-        "React",
-        "SSE",
-        "OpenAI"
+        "FIGMA",
+        "ILLUSTRATOR",
+        "ADOBE XD"
       ],
       "accent": "hsl(240 25% 12%)",
       "glow": "hsl(280 65% 55% / 0.25)",
