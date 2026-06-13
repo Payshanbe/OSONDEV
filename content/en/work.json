@@ -78,7 +78,17 @@
       ],
       "accent": "hsl(200 38% 14%)",
       "glow": "hsl(199 88% 52% / 0.22)",
-      "body": "Extended case narratives, outcome metrics, and process notes are prepared for qualified conversations. Reach out below if you'd like this study in full — or browse the homepage grid while we finalize the archive."
+      "body": "Extended case narratives, outcome metrics, and process notes are prepared for qualified conversations. Reach out below if you'd like this study in full — or browse the homepage grid while we finalize the archive.",
+      "gallery": [
+        {
+          "url": "https://tilqnomrkwqaon02.public.blob.vercel-storage.com/work/ux-ui/1781315953120-------------HvYHP65TPxX5k6itmemnJq6BA7T941.png",
+          "type": "image"
+        },
+        {
+          "url": "https://tilqnomrkwqaon02.public.blob.vercel-storage.com/work/ux-ui/1781315960616-photo_2026-06-05_02-30-45-z5gE2UgDkRcJq0XRXXBH1DL0kK312k.jpg",
+          "type": "image"
+        }
+      ]
     }
   ]
 }
