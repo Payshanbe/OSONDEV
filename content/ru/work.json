@@ -43,9 +43,9 @@
       "year": "2025",
       "description": "Создаём интерфейсы, которые объединяют эстетику, удобство и бизнес-цели",
       "stack": [
-        "React",
-        "SSE",
-        "OpenAI"
+        "FIGMA",
+        "ILLUSTRATOR",
+        "ADOBE XD"
       ],
       "accent": "hsl(240 25% 12%)",
       "glow": "hsl(280 65% 55% / 0.25)",
@@ -61,10 +61,6 @@
         },
         {
           "url": "https://tilqnomrkwqaon02.public.blob.vercel-storage.com/work/ux-ui/1781317081966-logo-FOLaWLpa7G6nItfGhVRzq8KgOCkSyX.png",
-          "type": "image"
-        },
-        {
-          "url": "https://tilqnomrkwqaon02.public.blob.vercel-storage.com/work/ux-ui/1781317125320-taom-OpstBlTLE4OrqqTFmepDxAojrtMeGh.png",
           "type": "image"
         }
       ]
