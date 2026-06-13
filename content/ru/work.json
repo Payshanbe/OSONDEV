@@ -37,11 +37,11 @@
       "body": "От корпоративных сайтов до сложных веб-платформ — мы создаем продукты, которые сочетают продуманный дизайн, высокую производительность и удобство использования. Каждый проект разрабатывается с учетом потребностей бизнеса и его будущего роста."
     },
     {
-      "slug": "circuit-ai",
-      "title": "Circuit",
-      "category": "Labs",
-      "year": "2026",
-      "description": "Workspace for prompting, reviewing, and shipping AI-assisted workflows inside an existing ops stack.",
+      "slug": "ux-ui",
+      "title": "UX/UI",
+      "category": "DESIGN",
+      "year": "2025",
+      "description": "Создаём интерфейсы, которые объединяют эстетику, удобство и бизнес-цели",
       "stack": [
         "React",
         "SSE",
@@ -49,7 +49,17 @@
       ],
       "accent": "hsl(240 25% 12%)",
       "glow": "hsl(280 65% 55% / 0.25)",
-      "body": "Extended case narratives, outcome metrics, and process notes are prepared for qualified conversations. Reach out below if you'd like this study in full — or browse the homepage grid while we finalize the archive."
+      "body": "Наш подход основан на исследовании, простоте и продуманном пользовательском опыте. Мы создаём не просто визуальные решения, а цифровые продукты, которые выглядят современно, работают эффективно и помогают пользователям быстрее достигать результата.",
+      "gallery": [
+        {
+          "url": "https://tilqnomrkwqaon02.public.blob.vercel-storage.com/work/ux-ui/1781316024484-------------b3wb3B7KXiDGhtae9Tp7Ssfy5Tubpo.png",
+          "type": "image"
+        },
+        {
+          "url": "https://tilqnomrkwqaon02.public.blob.vercel-storage.com/work/ux-ui/1781316036712-photo_2026-06-05_02-30-45-bvYBwreTmNLJ4rxVQeJ14W70wfPYjv.jpg",
+          "type": "image"
+        }
+      ]
     },
     {
       "slug": "taom-saas",
