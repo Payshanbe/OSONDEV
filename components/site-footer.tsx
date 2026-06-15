@@ -68,7 +68,7 @@ export function SiteFooter() {
 
         <div className="mt-14 flex flex-col gap-3 border-t border-border/40 pt-8 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <p className="font-mono uppercase tracking-[0.18em]">
-            © {year} {site.name} Dev
+            © {year} {site.name} 
           </p>
           <p className="font-mono uppercase tracking-[0.18em] text-muted-foreground/70">
             Built with care

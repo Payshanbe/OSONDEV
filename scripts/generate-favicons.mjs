@@ -9,10 +9,16 @@ import sharp from "sharp";
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const src = path.join(root, "public", "favicon-source.jpg");
+/** >1 zooms the mark so it fills more of the browser tab (browsers render favicons small). */
+const TAB_ICON_ZOOM = 1.18;
 
 async function squareIcon(buffer, size) {
+  const zoomed = Math.round(size * TAB_ICON_ZOOM);
+  const offset = Math.floor((zoomed - size) / 2);
+
   return sharp(buffer)
-    .resize(size, size, { fit: "cover" })
+    .resize(zoomed, zoomed, { fit: "cover", position: "centre" })
+    .extract({ left: offset, top: offset, width: size, height: size })
     .png()
     .toBuffer();
 }
