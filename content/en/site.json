@@ -137,20 +137,20 @@
     "marquee": {
       "items": [
         {
-          "label": "Dev",
-          "value": "OSON / Remote"
+          "label": "AGENCY",
+          "value": "Digital Bureau"
         },
         {
-          "label": "Focus",
+          "label": "FOCUS",
           "value": "Brand · Web · Product"
         },
         {
-          "label": "Engagements",
-          "value": "From 4 weeks"
+          "label": "NO BLACK BOXES",
+          "value": "Total Transparency"
         },
         {
-          "label": "Founded",
-          "value": "2025"
+          "label": "GOAL",
+          "value": "Pixel Perfect"
         }
       ]
     },
