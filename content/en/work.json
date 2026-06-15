@@ -28,9 +28,9 @@
       "year": "2026",
       "description": "Digital Solutions for Modern Businesses",
       "stack": [
-        "React",
-        "SSE",
-        "OpenAI"
+        "Next.js",
+        "WordPress",
+        "Express.js"
       ],
       "accent": "hsl(240 25% 12%)",
       "glow": "hsl(280 65% 55% / 0.25)",
