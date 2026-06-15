@@ -137,20 +137,20 @@
     "marquee": {
       "items": [
         {
-          "label": "Dev",
-          "value": "OSON / Remote"
+          "label": "ФОРМАТ",
+          "value": "Диджитал-бюро"
         },
         {
-          "label": "Фокус",
+          "label": "ФОКУС",
           "value": "Бренд · Веб · Продукт"
         },
         {
-          "label": "Сроки",
-          "value": "От 4 недель"
+          "label": "ПРОЗРАЧНОСТЬ",
+          "value": "Без «черных ящиков»"
         },
         {
-          "label": "Основана",
-          "value": "2025"
+          "label": "РЕЗУЛЬТАТ",
+          "value": "Pixel Perfect"
         }
       ]
     },
