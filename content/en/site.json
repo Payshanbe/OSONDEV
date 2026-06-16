@@ -78,23 +78,23 @@
     "services": {
       "eyebrow": "Capabilities",
       "heading": "Services",
-      "intro": "End-to-end craft for teams who care how things feel in hand — from first wireframe through launch and the iterations that follow.",
+      "intro": "Full-cycle development for founders and teams who care about craft — from first wireframe through launch and the iterations that follow.",
       "items": [
         {
           "title": "Web Development",
-          "description": "Marketing sites and product surfaces built on modern stacks — fast, accessible, and ready to scale."
+          "description": "Marketing websites and product interfaces built on a modern tech stack — focused on high performance, reliability, and seamless scalability"
         },
         {
           "title": "UI/UX Design",
-          "description": "Research-led interfaces and design systems that stay coherent from first sketch to shipped UI."
+          "description": "Designing interfaces and scalable design systems: from deep user research to polished, pixel-perfect UI"
         },
         {
           "title": "SaaS Development",
-          "description": "Dashboards, onboarding, and billing flows engineered for teams shipping B2B software."
+          "description": "Engineering complex B2B platforms: from analytical dashboards and onboarding flows to flexible billing integrations"
         },
         {
           "title": "Performance Optimization",
-          "description": "Core Web Vitals, bundle discipline, and infrastructure tuning so experiences feel instant."
+          "description": "Core Web Vitals optimization, infrastructure audits, and bundle cleaning to achieve instant load times and flawless speed"
         },
         {
           "title": "Motion & Interaction Design",
