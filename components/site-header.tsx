@@ -29,6 +29,7 @@ const DESKTOP_NAV_MQ = "(min-width: 768px)";
 export function SiteHeader() {
   const { site } = useSiteContent();
   const locale = useLocale();
+  const openMenuLabel = locale === "ru" ? "Открыть меню" : "Open menu";
   const { scrolled } = useScroll({ threshold: 16 });
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -57,12 +58,8 @@ export function SiteHeader() {
           <motion.div
             initial={false}
             animate={{
-              backgroundColor: scrolled
-                ? "hsla(240, 10%, 3.5%, 0.55)"
-                : "hsla(240, 10%, 3.5%, 0)",
-              borderColor: scrolled
-                ? "hsla(240, 6%, 14%, 0.55)"
-                : "hsla(240, 6%, 14%, 0)",
+              backgroundColor: scrolled ? "hsla(240, 10%, 3.5%, 0.55)" : "hsla(240, 10%, 3.5%, 0)",
+              borderColor: scrolled ? "hsla(240, 6%, 14%, 0.55)" : "hsla(240, 6%, 14%, 0)",
               boxShadow: scrolled
                 ? "0 8px 32px -12px hsla(0, 0%, 0%, 0.55)"
                 : "0 0 0 0 transparent",
@@ -75,36 +72,36 @@ export function SiteHeader() {
               scrolled && "backdrop-blur-xl",
             )}
           >
-            <div className="relative flex min-h-0 min-w-0 w-full flex-1 items-center justify-between gap-3 md:contents">
+            <div className="relative flex min-h-0 w-full min-w-0 flex-1 items-center justify-between gap-3 md:contents">
               <div className="min-w-0 shrink md:justify-self-start">
                 <Logo className="min-w-0 max-w-[min(52vw,13rem)] sm:max-w-none" />
               </div>
 
-            <nav
-              aria-label="Primary"
-              className="hidden items-center justify-center gap-6 md:flex lg:gap-8"
-            >
-              {site.nav.map((item) => (
-                <NavLink key={item.href} href={localizeHref(item.href, locale)}>
-                  {item.label}
-                </NavLink>
-              ))}
-            </nav>
-
-            <div className="flex shrink-0 items-center justify-end gap-2 md:justify-self-end">
-              <LocaleSwitcher className="hidden sm:inline-flex" />
-
-              <button
-                type="button"
-                onClick={openMobile}
-                aria-expanded={mobileOpen}
-                aria-controls="mobile-navigation"
-                aria-label="Open menu"
-                className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-secondary/50 hover:text-foreground focus-ring md:hidden"
+              <nav
+                aria-label="Primary"
+                className="hidden items-center justify-center gap-6 md:flex lg:gap-8"
               >
-                <Menu className="size-[18px]" strokeWidth={1.75} aria-hidden />
-              </button>
-            </div>
+                {site.nav.map((item) => (
+                  <NavLink key={item.href} href={localizeHref(item.href, locale)}>
+                    {item.label}
+                  </NavLink>
+                ))}
+              </nav>
+
+              <div className="flex shrink-0 items-center justify-end gap-2 md:justify-self-end">
+                <LocaleSwitcher className="hidden sm:inline-flex" />
+
+                <button
+                  type="button"
+                  onClick={openMobile}
+                  aria-expanded={mobileOpen}
+                  aria-controls="mobile-navigation"
+                  aria-label={openMenuLabel}
+                  className="focus-ring inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-secondary/50 hover:text-foreground md:hidden"
+                >
+                  <Menu className="size-[18px]" strokeWidth={1.75} aria-hidden />
+                </button>
+              </div>
             </div>
           </motion.div>
         </motion.div>

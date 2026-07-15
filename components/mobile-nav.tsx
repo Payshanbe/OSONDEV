@@ -24,6 +24,10 @@ interface MobileNavProps {
 export function MobileNav({ open, onClose, id }: MobileNavProps) {
   const { site } = useSiteContent();
   const locale = useLocale();
+  const copy =
+    locale === "ru"
+      ? { menu: "Меню", close: "Закрыть меню", navigation: "Навигация" }
+      : { menu: "Menu", close: "Close menu", navigation: "Navigation menu" };
 
   useEffect(() => {
     if (!open) return;
@@ -48,7 +52,7 @@ export function MobileNav({ open, onClose, id }: MobileNavProps) {
         <>
           <motion.button
             type="button"
-            aria-label="Close menu"
+            aria-label={copy.close}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -61,7 +65,7 @@ export function MobileNav({ open, onClose, id }: MobileNavProps) {
             id={id}
             role="dialog"
             aria-modal="true"
-            aria-label="Navigation menu"
+            aria-label={copy.navigation}
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
@@ -76,13 +80,13 @@ export function MobileNav({ open, onClose, id }: MobileNavProps) {
           >
             <div className="flex h-14 min-h-[3.5rem] shrink-0 items-center justify-between border-b border-border/40 px-4 sm:h-16 sm:px-6">
               <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
-                Menu
+                {copy.menu}
               </span>
               <button
                 type="button"
                 onClick={onClose}
-                aria-label="Close menu"
-                className="inline-flex h-9 w-9 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-secondary/60 hover:text-foreground focus-ring"
+                aria-label={copy.close}
+                className="focus-ring inline-flex h-9 w-9 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-secondary/60 hover:text-foreground"
               >
                 <X className="size-4" aria-hidden />
               </button>

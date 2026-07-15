@@ -33,17 +33,15 @@ const logoConfig = {
 export function Logo({ className, href = "/", size = "md" }: LogoProps) {
   const { site } = useSiteContent();
   const locale = useLocale();
+  const homeLabel = locale === "ru" ? "главная" : "home";
   const resolvedHref = href === "/" ? homePath(locale) : localizeHref(href, locale);
   const config = logoConfig[size];
 
   return (
     <Link
       href={resolvedHref}
-      aria-label={`${site.name} — home`}
-      className={cn(
-        "group inline-flex items-center focus-ring rounded-md",
-        className,
-      )}
+      aria-label={`${site.name} — ${homeLabel}`}
+      className={cn("focus-ring group inline-flex items-center rounded-md", className)}
     >
       <Image
         src={config.src}

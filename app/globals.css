@@ -64,8 +64,12 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
-    font-feature-settings: "ss01", "cv11", "rlig" 1, "calt" 1;
+    @apply bg-background font-sans text-foreground antialiased;
+    font-feature-settings:
+      "ss01",
+      "cv11",
+      "rlig" 1,
+      "calt" 1;
     overflow-x: hidden;
   }
 
@@ -110,19 +114,11 @@
    * Size is set by ID so it always applies, even if a utility class is missing from HMR.
    */
   #hero-heading {
-    font-size: clamp(2.5rem, 6.5vw, 5rem);
-    line-height: 0.98;
-    letter-spacing: -0.035em;
+    font-size: clamp(3rem, 8.4vw, 7.75rem);
+    line-height: 0.9;
+    letter-spacing: -0.055em;
     font-weight: 600;
-    max-width: 20ch;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  @media (min-width: 640px) {
-    #hero-heading {
-      max-width: 22ch;
-    }
+    max-width: 10ch;
   }
 
   .text-gradient {
@@ -139,8 +135,7 @@
   }
 
   .bg-grid {
-    background-image:
-      linear-gradient(to right, hsl(var(--border) / 0.4) 1px, transparent 1px),
+    background-image: linear-gradient(to right, hsl(var(--border) / 0.4) 1px, transparent 1px),
       linear-gradient(to bottom, hsl(var(--border) / 0.4) 1px, transparent 1px);
     background-size: 56px 56px;
     mask-image: radial-gradient(ellipse 85% 65% at 50% 28%, black 35%, transparent 78%);

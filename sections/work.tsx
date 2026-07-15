@@ -32,7 +32,7 @@ export function WorkSection({ projects }: { projects: WorkProject[] }) {
         <Reveal delay={0.06}>
           <h2
             id="work-heading"
-            className="mt-6 max-w-2xl text-display-lg font-medium tracking-tight text-balance"
+            className="mt-6 max-w-2xl text-balance text-display-lg font-medium tracking-tight"
           >
             {work.heading}
           </h2>
@@ -63,6 +63,7 @@ export function WorkSection({ projects }: { projects: WorkProject[] }) {
 function ProjectCard(project: WorkProject) {
   const { slug, title, category, year, description, stack, glow } = project;
   const locale = useLocale();
+  const caseLabel = locale === "ru" ? "О проекте" : "Case study";
 
   return (
     <motion.article
@@ -101,7 +102,7 @@ function ProjectCard(project: WorkProject) {
               </span>
             </div>
             <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-              Case study
+              {caseLabel}
             </span>
           </div>
 

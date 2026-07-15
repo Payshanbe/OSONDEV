@@ -3,14 +3,14 @@ import type { SiteContent, WorkContent } from "@/lib/content/types";
 export const DEFAULT_SITE_CONTENT_RU: SiteContent = {
   site: {
     name: "OSONDEV",
-    shortName: "OSON",
+    shortName: "STUDIO",
     tagline: "Цифровая студия",
     description:
-      "Независимая студия: проектируем и создаём цифровые продукты для амбициозных команд.",
-    url: "https://sitan.studio",
-    ogImage: "/og.png",
+      "OsonDev — независимая цифровая студия, которая проектирует и разрабатывает продуманные цифровые продукты для бизнеса.",
+    url: "https://osondev.tj",
+    ogImage: "/ru/opengraph-image",
     locale: "ru_RU",
-    email: "osondev@studio",
+    email: "info@osondev.tj",
     location: "Удалённо — работаем по всему миру",
     founded: 2024,
     nav: [
@@ -23,13 +23,8 @@ export const DEFAULT_SITE_CONTENT_RU: SiteContent = {
       label: "Начать проект",
       href: "/#contact",
     },
-    social: [
-      { label: "Twitter", href: "https://twitter.com/sitanstudio" },
-      { label: "GitHub", href: "https://github.com/sitanstudio" },
-      { label: "Dribbble", href: "https://dribbble.com/sitanstudio" },
-      { label: "LinkedIn", href: "https://linkedin.com/company/sitanstudio" },
-    ],
-    authors: [{ name: "OSON Dev", url: "https://sitan.studio" }],
+    social: [{ label: "Instagram", href: "https://www.instagram.com/osondev.tj" }],
+    authors: [{ name: "OSON Dev", url: "https://osondev.tj" }],
     keywords: [
       "дизайн-студия",
       "веб-студия",
@@ -42,11 +37,11 @@ export const DEFAULT_SITE_CONTENT_RU: SiteContent = {
   },
   sections: {
     hero: {
-      eyebrow: "Независимая digital-студия",
-      title: "Мы создаём продукты, которые",
-      titleEmphasis: "запоминают.",
+      eyebrow: "Независимая студия дизайна и разработки",
+      title: "Сложные идеи.",
+      titleEmphasis: "Понятные цифровые продукты.",
       description:
-        "Проектируем и разрабатываем премиальные цифровые решения для брендов, стартапов и современного бизнеса.",
+        "Стратегия, продуктовый дизайн и разработка в одной сфокусированной команде — от карты системы до готового к запуску продукта.",
       primaryCta: { label: "Начать проект", href: "#contact" },
       secondaryCta: { label: "Смотреть работы", href: "#work" },
       scrollLabel: "Листайте",
@@ -75,8 +70,7 @@ export const DEFAULT_SITE_CONTENT_RU: SiteContent = {
         },
         {
           title: "SaaS-разработка",
-          description:
-            "Дашборды, онбординг и биллинг для команд, которые выпускают B2B-продукты.",
+          description: "Дашборды, онбординг и биллинг для команд, которые выпускают B2B-продукты.",
         },
         {
           title: "Оптимизация производительности",
@@ -155,8 +149,7 @@ export const DEFAULT_WORK_CONTENT_RU: WorkContent = {
       stack: ["Next.js", "TypeScript", "Tailwind"],
       accent: "hsl(220 42% 18%)",
       glow: "hsl(220 76% 58% / 0.35)",
-      body:
-        "Развёрнутые кейсы и метрики готовим для заинтересованных клиентов. Напишите, если нужна полная версия материала.",
+      body: "Развёрнутые кейсы и метрики готовим для заинтересованных клиентов. Напишите, если нужна полная версия материала.",
     },
     {
       slug: "northwind-trade",
@@ -168,8 +161,7 @@ export const DEFAULT_WORK_CONTENT_RU: WorkContent = {
       stack: ["Shopify Hydrogen", "React", "Node"],
       accent: "hsl(263 38% 16%)",
       glow: "hsl(263 70% 50% / 0.28)",
-      body:
-        "Развёрнутые кейсы и метрики готовим для заинтересованных клиентов. Напишите, если нужна полная версия материала.",
+      body: "Развёрнутые кейсы и метрики готовим для заинтересованных клиентов. Напишите, если нужна полная версия материала.",
     },
     {
       slug: "helios-studios",
@@ -181,21 +173,18 @@ export const DEFAULT_WORK_CONTENT_RU: WorkContent = {
       stack: ["Framer Motion", "MDX", "Vercel"],
       accent: "hsl(200 38% 14%)",
       glow: "hsl(199 88% 52% / 0.22)",
-      body:
-        "Развёрнутые кейсы и метрики готовим для заинтересованных клиентов. Напишите, если нужна полная версия материала.",
+      body: "Развёрнутые кейсы и метрики готовим для заинтересованных клиентов. Напишите, если нужна полная версия материала.",
     },
     {
       slug: "circuit-ai",
       title: "Circuit",
       category: "Labs",
       year: "2026",
-      description:
-        "Среда для промптов, ревью и внедрения AI-воркфлоу в существующий ops-стек.",
+      description: "Среда для промптов, ревью и внедрения AI-воркфлоу в существующий ops-стек.",
       stack: ["React", "SSE", "OpenAI"],
       accent: "hsl(240 25% 12%)",
       glow: "hsl(280 65% 55% / 0.25)",
-      body:
-        "Развёрнутые кейсы и метрики готовим для заинтересованных клиентов. Напишите, если нужна полная версия материала.",
+      body: "Развёрнутые кейсы и метрики готовим для заинтересованных клиентов. Напишите, если нужна полная версия материала.",
     },
   ],
 };

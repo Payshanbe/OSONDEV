@@ -1,15 +1,21 @@
-import type { Viewport } from "next";
+import type { Metadata, Viewport } from "next";
 
 import { ThemeProvider } from "@/components/theme-provider";
 import { MotionProvider } from "@/components/motion-provider";
 import { NoiseOverlay } from "@/components/noise-overlay";
+import { SkipLink } from "@/components/skip-link";
 import { SiteBackground } from "@/components/site-background";
 import { fontBrand, fontMono, fontSans, fontSerif } from "@/lib/fonts";
+import { getSiteConfig } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
 import "./globals.css";
 
 /** Title/metadata live on locale pages only — root metadata caused duplicate titles in SERP. */
+
+export const metadata: Metadata = {
+  metadataBase: new URL(getSiteConfig().url),
+};
 
 export const viewport: Viewport = {
   themeColor: [
@@ -44,12 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <NoiseOverlay />
             {/* Layer 5: page content */}
             <div className="relative z-10">
-              <a
-                href="#main"
-                className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-foreground focus:px-4 focus:py-2 focus:text-sm focus:text-background"
-              >
-                Skip to content
-              </a>
+              <SkipLink />
               {children}
             </div>
           </MotionProvider>

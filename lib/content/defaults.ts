@@ -2,15 +2,15 @@ import type { SiteContent, WorkContent } from "@/lib/content/types";
 
 export const DEFAULT_SITE_CONTENT: SiteContent = {
   site: {
-    name: "OSON",
-    shortName: "OSON",
+    name: "OSONDEV",
+    shortName: "STUDIO",
     tagline: "Digital studio",
     description:
-      "Sitan is an independent studio designing and engineering refined digital products for ambitious teams.",
-    url: "https://sitan.studio",
-    ogImage: "/og.png",
+      "OsonDev is an independent studio designing and engineering refined digital products for ambitious teams.",
+    url: "https://osondev.tj",
+    ogImage: "/en/opengraph-image",
     locale: "en_US",
-    email: "studio@sitan.studio",
+    email: "info@osondev.tj",
     location: "Remote — operating worldwide",
     founded: 2024,
     nav: [
@@ -23,13 +23,8 @@ export const DEFAULT_SITE_CONTENT: SiteContent = {
       label: "Start a project",
       href: "/#contact",
     },
-    social: [
-      { label: "Twitter", href: "https://twitter.com/sitanstudio" },
-      { label: "GitHub", href: "https://github.com/sitanstudio" },
-      { label: "Dribbble", href: "https://dribbble.com/sitanstudio" },
-      { label: "LinkedIn", href: "https://linkedin.com/company/sitanstudio" },
-    ],
-    authors: [{ name: "OSON Dev", url: "https://sitan.studio" }],
+    social: [{ label: "Instagram", href: "https://www.instagram.com/osondev.tj" }],
+    authors: [{ name: "OSON Dev", url: "https://osondev.tj" }],
     keywords: [
       "design studio",
       "web studio",
@@ -37,16 +32,16 @@ export const DEFAULT_SITE_CONTENT: SiteContent = {
       "product design",
       "engineering",
       "Next.js studio",
-      "Sitan",
+      "OSONDEV",
     ],
   },
   sections: {
     hero: {
-      eyebrow: "Independent digital dev",
-      title: "We build products people",
-      titleEmphasis: "remember.",
+      eyebrow: "Independent design & development studio",
+      title: "Complex ideas.",
+      titleEmphasis: "Clear digital products.",
       description:
-        "We design and engineer premium digital experiences for ambitious brands, startups and modern businesses.",
+        "Strategy, product design, and engineering in one focused team — from the first system map to a production-ready release.",
       primaryCta: { label: "Start a project", href: "#contact" },
       secondaryCta: { label: "View work", href: "#work" },
       scrollLabel: "Scroll",
@@ -154,8 +149,7 @@ export const DEFAULT_WORK_CONTENT: WorkContent = {
       stack: ["Next.js", "TypeScript", "Tailwind"],
       accent: "hsl(220 42% 18%)",
       glow: "hsl(220 76% 58% / 0.35)",
-      body:
-        "Extended case narratives, outcome metrics, and process notes are prepared for qualified conversations. Reach out below if you'd like this study in full — or browse the homepage grid while we finalize the archive.",
+      body: "Extended case narratives, outcome metrics, and process notes are prepared for qualified conversations. Reach out below if you'd like this study in full — or browse the homepage grid while we finalize the archive.",
     },
     {
       slug: "northwind-trade",
@@ -167,8 +161,7 @@ export const DEFAULT_WORK_CONTENT: WorkContent = {
       stack: ["Shopify Hydrogen", "React", "Node"],
       accent: "hsl(263 38% 16%)",
       glow: "hsl(263 70% 50% / 0.28)",
-      body:
-        "Extended case narratives, outcome metrics, and process notes are prepared for qualified conversations. Reach out below if you'd like this study in full — or browse the homepage grid while we finalize the archive.",
+      body: "Extended case narratives, outcome metrics, and process notes are prepared for qualified conversations. Reach out below if you'd like this study in full — or browse the homepage grid while we finalize the archive.",
     },
     {
       slug: "helios-studios",
@@ -180,8 +173,7 @@ export const DEFAULT_WORK_CONTENT: WorkContent = {
       stack: ["Framer Motion", "MDX", "Vercel"],
       accent: "hsl(200 38% 14%)",
       glow: "hsl(199 88% 52% / 0.22)",
-      body:
-        "Extended case narratives, outcome metrics, and process notes are prepared for qualified conversations. Reach out below if you'd like this study in full — or browse the homepage grid while we finalize the archive.",
+      body: "Extended case narratives, outcome metrics, and process notes are prepared for qualified conversations. Reach out below if you'd like this study in full — or browse the homepage grid while we finalize the archive.",
     },
     {
       slug: "circuit-ai",
@@ -193,8 +185,7 @@ export const DEFAULT_WORK_CONTENT: WorkContent = {
       stack: ["React", "SSE", "OpenAI"],
       accent: "hsl(240 25% 12%)",
       glow: "hsl(280 65% 55% / 0.25)",
-      body:
-        "Extended case narratives, outcome metrics, and process notes are prepared for qualified conversations. Reach out below if you'd like this study in full — or browse the homepage grid while we finalize the archive.",
+      body: "Extended case narratives, outcome metrics, and process notes are prepared for qualified conversations. Reach out below if you'd like this study in full — or browse the homepage grid while we finalize the archive.",
     },
   ],
 };

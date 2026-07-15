@@ -2,16 +2,18 @@ import type { Metadata } from "next";
 
 import { getSiteConfig } from "@/lib/content";
 import { defaultLocale, locales, ogLocale, type Locale } from "@/lib/i18n/config";
-import { absoluteUrl } from "./utils";
 
 interface BuildMetadataOptions {
   title?: string;
   description?: string;
   /** Path without locale prefix, e.g. `/` or `/work/foo` */
   path?: string;
-  image?: string;
   noIndex?: boolean;
   locale?: Locale;
+}
+
+function siteUrl(baseUrl: string, path: string): string {
+  return new URL(path, `${baseUrl.replace(/\/$/, "")}/`).toString();
 }
 
 /**
@@ -22,24 +24,22 @@ export function buildMetadata({
   title,
   description,
   path = "/",
-  image,
   noIndex = false,
   locale = defaultLocale,
 }: BuildMetadataOptions = {}): Metadata {
   const site = getSiteConfig(locale);
   const resolvedDescription = description ?? site.description;
-  const resolvedImage = image ?? site.ogImage;
-  const pageTitle = title
-    ? `${title} — ${site.name}`
-    : `${site.name} — ${site.tagline}`;
+  const pageTitle = title ? `${title} — ${site.name}` : `${site.name} — ${site.tagline}`;
 
   const localizedPath = path === "/" ? `/${locale}` : `/${locale}${path}`;
-  const url = absoluteUrl(localizedPath);
+  const url = siteUrl(site.url, localizedPath);
+  const openGraphImage = siteUrl(site.url, `/${locale}/opengraph-image`);
+  const twitterImage = siteUrl(site.url, `/${locale}/twitter-image`);
 
   const languages: Record<string, string> = {};
   for (const loc of locales) {
     const altPath = path === "/" ? `/${loc}` : `/${loc}${path}`;
-    languages[loc] = absoluteUrl(altPath);
+    languages[loc] = siteUrl(site.url, altPath);
   }
 
   return {
@@ -62,21 +62,13 @@ export function buildMetadata({
       siteName: site.name,
       title: pageTitle,
       description: resolvedDescription,
-      images: [
-        {
-          url: resolvedImage,
-          width: 1200,
-          height: 630,
-          alt: pageTitle,
-        },
-      ],
+      images: [{ url: openGraphImage, width: 1200, height: 630, alt: pageTitle }],
     },
     twitter: {
       card: "summary_large_image",
       title: pageTitle,
       description: resolvedDescription,
-      images: [resolvedImage],
-      creator: "@sitanstudio",
+      images: [twitterImage],
     },
     robots: noIndex
       ? { index: false, follow: false }

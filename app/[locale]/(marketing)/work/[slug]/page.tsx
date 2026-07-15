@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!isValidLocale(localeParam)) return {};
   const locale = localeParam as Locale;
   const project = await getWorkProject(slug, locale);
-  if (!project) return {};
+  if (!project) notFound();
 
   return buildMetadata({
     title: `${project.title}`,
@@ -41,20 +41,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 const copy = {
   en: {
-    unknown: "Unknown project",
-    back: "Back to studio",
     allWork: "All work",
     discuss: "Discuss a similar engagement",
     bodyFallback:
       "Extended case narratives, outcome metrics, and process notes are prepared for qualified conversations.",
   },
   ru: {
-    unknown: "Проект не найден",
-    back: "На главную",
     allWork: "Все работы",
     discuss: "Обсудить похожий проект",
-    bodyFallback:
-      "Развёрнутые кейсы и метрики готовим для заинтересованных клиентов.",
+    bodyFallback: "Развёрнутые кейсы и метрики готовим для заинтересованных клиентов.",
   },
 } as const;
 
@@ -65,19 +60,7 @@ export default async function WorkCasePage({ params }: Props) {
   const t = copy[locale];
 
   const project = await getWorkProject(slug, locale);
-
-  if (!project) {
-    return (
-      <div className="container-tight py-32">
-        <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-          {t.unknown}
-        </p>
-        <Button asChild className="mt-8">
-          <Link href={homePath(locale)}>{t.back}</Link>
-        </Button>
-      </div>
-    );
-  }
+  if (!project) notFound();
 
   const body = project.body ?? t.bodyFallback;
   const normalized = normalizeWorkProject(project);
@@ -89,9 +72,7 @@ export default async function WorkCasePage({ params }: Props) {
         <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
           {project.category} · {project.year}
         </p>
-        <h1 className="mt-4 text-display-xl font-semibold tracking-tight">
-          {project.title}
-        </h1>
+        <h1 className="mt-4 text-display-xl font-semibold tracking-tight">{project.title}</h1>
         <div className="mt-10">
           {gallery.length > 1 ? (
             <WorkProjectGallery items={gallery} title={project.title} variant="grid" />
@@ -102,9 +83,7 @@ export default async function WorkCasePage({ params }: Props) {
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
           {project.description}
         </p>
-        <p className="mt-14 max-w-xl text-sm leading-relaxed text-muted-foreground">
-          {body}
-        </p>
+        <p className="mt-14 max-w-xl text-sm leading-relaxed text-muted-foreground">{body}</p>
         <div className="mt-12 flex flex-wrap gap-3">
           {project.stack.map((item) => (
             <span

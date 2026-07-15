@@ -1,13 +1,13 @@
 {
   "site": {
-    "name": "OSON",
-    "shortName": "OSON",
+    "name": "OSONDEV",
+    "shortName": "STUDIO",
     "tagline": "Digital studio",
-    "description": "Sitan is an independent studio designing and engineering refined digital products for ambitious teams.",
-    "url": "https://sitan.studio",
-    "ogImage": "/og.png",
+    "description": "OsonDev is an independent studio designing and engineering refined digital products for ambitious teams.",
+    "url": "https://osondev.tj",
+    "ogImage": "/en/opengraph-image",
     "locale": "en_US",
-    "email": "studio@sitan.studio",
+    "email": "info@osondev.tj",
     "location": "Remote — operating worldwide",
     "founded": 2024,
     "nav": [
@@ -32,16 +32,11 @@
       "label": "Start a project",
       "href": "/#contact"
     },
-    "social": [
-      { "label": "Twitter", "href": "https://twitter.com/sitanstudio" },
-      { "label": "GitHub", "href": "https://github.com/sitanstudio" },
-      { "label": "Dribbble", "href": "https://dribbble.com/sitanstudio" },
-      { "label": "LinkedIn", "href": "https://linkedin.com/company/sitanstudio" }
-    ],
+    "social": [{ "label": "Instagram", "href": "https://www.instagram.com/osondev.tj" }],
     "authors": [
       {
         "name": "OSON Dev",
-        "url": "https://sitan.studio"
+        "url": "https://osondev.tj"
       }
     ],
     "keywords": [
@@ -51,15 +46,15 @@
       "product design",
       "engineering",
       "Next.js studio",
-      "Sitan"
+      "OSONDEV"
     ]
   },
   "sections": {
     "hero": {
-      "eyebrow": "Independent digital dev",
-      "title": "We build products people",
-      "titleEmphasis": "remember.",
-      "description": "We design and engineer premium digital experiences for ambitious brands, startups and modern businesses.",
+      "eyebrow": "Independent design & development studio",
+      "title": "Complex ideas.",
+      "titleEmphasis": "Clear digital products.",
+      "description": "Strategy, product design, and engineering in one focused team — from the first system map to a production-ready release.",
       "primaryCta": {
         "label": "Start a project",
         "href": "#contact"

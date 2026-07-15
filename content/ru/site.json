@@ -3,9 +3,9 @@
     "name": "OSONDEV",
     "shortName": "",
     "tagline": "Цифровая студия",
-    "description": "OsonDev is an independent studio designing and engineering refined digital products for ambitious teams.",
+    "description": "OsonDev — независимая цифровая студия, которая проектирует и разрабатывает продуманные цифровые продукты для бизнеса.",
     "url": "https://osondev.tj",
-    "ogImage": "/og.png",
+    "ogImage": "/ru/opengraph-image",
     "locale": "ru_RU",
     "email": "info@osondev.tj",
     "location": "Удалённо — работаем по всему миру",
@@ -41,7 +41,7 @@
     "authors": [
       {
         "name": "OSON Dev",
-        "url": "https://sitan.studio"
+        "url": "https://osondev.tj"
       }
     ],
     "keywords": [
@@ -56,10 +56,10 @@
   },
   "sections": {
     "hero": {
-      "eyebrow": "Независимая цифровая студия",
-      "title": "Мы создаём продукты, которые",
-      "titleEmphasis": "запоминают.",
-      "description": "Проектируем и разрабатываем премиальные цифровые решения для брендов, стартапов и современного бизнеса.",
+      "eyebrow": "Независимая студия дизайна и разработки",
+      "title": "Сложные идеи.",
+      "titleEmphasis": "Понятные цифровые продукты.",
+      "description": "Стратегия, продуктовый дизайн и разработка в одной сфокусированной команде — от карты системы до готового к запуску продукта.",
       "primaryCta": {
         "label": "Начать проект",
         "href": "#contact"
@@ -78,7 +78,7 @@
     "services": {
       "eyebrow": "Компетенции",
       "heading": "Услуги",
-      "intro": "«Мы становимся партнерами для основателей и команд, которые ценят внимание к деталям — от первого wireframe до запуска и непрерывного развития продукта»",
+      "intro": "Мы становимся партнерами для основателей и команд, которые ценят внимание к деталям — от первого прототипа до запуска и непрерывного развития продукта.",
       "items": [
         {
           "title": "Веб-разработка",
@@ -120,7 +120,7 @@
         {
           "number": "03",
           "title": "Разработка",
-          "description": "Production-ready веб-приложение"
+          "description": "Готовое к запуску веб-приложение"
         },
         {
           "number": "04",
