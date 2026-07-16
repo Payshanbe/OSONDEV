@@ -37,7 +37,7 @@ export const DEFAULT_SITE_CONTENT_RU: SiteContent = {
   },
   sections: {
     hero: {
-      eyebrow: "Независимая студия дизайна и разработки",
+      eyebrow: "",
       title: "Сложные идеи.",
       titleEmphasis: "Понятные цифровые продукты.",
       description:
@@ -126,11 +126,11 @@ export const DEFAULT_SITE_CONTENT_RU: SiteContent = {
       ],
     },
     cta: {
-      eyebrow: "Начнём диалог",
-      heading: "Создадим что-то",
-      headingEmphasis: "значимое.",
+      eyebrow: "Контакт",
+      heading: "Есть проект?",
+      headingEmphasis: "Давайте воплотим его в жизнь.",
       description:
-        "Работаем с основателями и командами, которым важно ремесло — от идеи до запуска и дальнейших итераций.",
+        "Коротко расскажите, что нужно запустить или улучшить. Мы изучим задачу и предложим понятный следующий шаг.",
       mailtoSubject: "Запрос на новый проект",
     },
   },

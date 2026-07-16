@@ -7,6 +7,7 @@ import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { HeroParticles } from "@/components/hero-particles";
 import { Magnetic } from "@/components/magnetic";
 import { Reveal } from "@/components/reveal";
+import { useProjectInquiry } from "@/components/project-inquiry";
 import { useLocale, useSiteContent } from "@/components/site-content-provider";
 import { Button } from "@/components/ui/button";
 
@@ -34,6 +35,7 @@ export function HeroSection() {
   const locale = useLocale();
   const hero = sections.hero;
   const meta = heroMeta[locale];
+  const { openProjectInquiry } = useProjectInquiry();
 
   return (
     <section
@@ -56,19 +58,7 @@ export function HeroSection() {
         <div className="container-wide flex min-h-[100svh] flex-col justify-end pb-8 pt-32 sm:pb-10 sm:pt-40 lg:pb-12">
           <div className="grid border-y border-white/15 lg:grid-cols-12">
             <div className="py-10 sm:py-14 lg:col-span-8 lg:py-16 lg:pr-12 xl:pr-16">
-              <Reveal.Item
-                as="span"
-                className="inline-flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.28em] text-foreground/65"
-              >
-                <span className="h-px w-8 bg-foreground/50" aria-hidden />
-                <span className="relative flex h-1.5 w-1.5" aria-hidden>
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400/70 opacity-60" />
-                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                </span>
-                {hero.eyebrow}
-              </Reveal.Item>
-
-              <Reveal.Item as="h1" id="hero-heading" className="mt-9 text-balance">
+              <Reveal.Item as="h1" id="hero-heading" className="text-balance">
                 <span className="block text-foreground">{hero.title}</span>
                 <span className="text-foreground/48 block font-normal">{hero.titleEmphasis}</span>
               </Reveal.Item>
@@ -86,11 +76,15 @@ export function HeroSection() {
 
               <Reveal.Item className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4 lg:mt-12">
                 <Magnetic>
-                  <Button asChild size="lg" className="rounded-none px-7">
-                    <Link href={hero.primaryCta.href} aria-label={hero.primaryCta.label}>
-                      {hero.primaryCta.label}
-                      <ArrowUpRight aria-hidden />
-                    </Link>
+                  <Button
+                    type="button"
+                    size="lg"
+                    className="rounded-none px-7"
+                    aria-label={hero.primaryCta.label}
+                    onClick={openProjectInquiry}
+                  >
+                    {hero.primaryCta.label}
+                    <ArrowUpRight aria-hidden />
                   </Button>
                 </Magnetic>
                 <Link

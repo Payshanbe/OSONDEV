@@ -37,7 +37,7 @@ export const DEFAULT_SITE_CONTENT: SiteContent = {
   },
   sections: {
     hero: {
-      eyebrow: "Independent design & development studio",
+      eyebrow: "",
       title: "Complex ideas.",
       titleEmphasis: "Clear digital products.",
       description:
@@ -127,11 +127,11 @@ export const DEFAULT_SITE_CONTENT: SiteContent = {
       ],
     },
     cta: {
-      eyebrow: "Start a conversation",
-      heading: "Let's build something",
-      headingEmphasis: "meaningful.",
+      eyebrow: "Contact",
+      heading: "Have a project in mind?",
+      headingEmphasis: "Let's make it real.",
       description:
-        "We partner with founders and teams who care about craft — from first concept through launch and the iterations that follow.",
+        "Tell us briefly what you need to launch or improve. We’ll review the brief and reply with a clear next step.",
       mailtoSubject: "New project inquiry",
     },
   },
